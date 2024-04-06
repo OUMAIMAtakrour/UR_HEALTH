@@ -3,3 +3,40 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    overflow-x: hidden;
+    background-color: #F3F2F2;
+}
+.book{
+    background-color: #B5FFA9;
+    border-radius: 40px;
+}
+.all{
+    border-radius: 20px;
+    width: 98vw;
+    height: 110vh;}  
+      
+
+.rectangle{
+    border-radius: 500px 500px 0px 0px;
+}
+.rectangle2{
+    width: 500px;
+    height: 360px;
+    border-radius: 500px 500px 0px 0px;
+}
+.rectangle-department{
+    border-radius: 0px 30px 30px 0px;
+    height: 60px;
+    width: 100%;
+}
+.contain-them{
+    width: 100%;
+   
+}
+.aside{
+    width: 40vw;
+}
+blockquote div img{
+    width: 20%;
+}

@@ -2,7 +2,6 @@ import {createBrowserRouter} from "react-router-dom";
 import App from "./App";
 import Dashboard from "./views/Dashboard";
 import Home from "./views/home";
-import Signup from "./views/Signup";
 import GuestLayout from "./Components/GuestLayout";
 
 const router = createBrowserRouter([
@@ -15,13 +14,10 @@ const router = createBrowserRouter([
         path:'/dashboard',
         element:<Dashboard/>
     },
-    {
-        path:'/home',
-        element:<Home/>
-    },
+ 
     {
         path:'/',
-        element:<GuestLayout/>
+        element:<Home/>
     },
 
 ])

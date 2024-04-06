@@ -3,6 +3,7 @@
 import React from 'react';
 
 function Signup() {
+
     return (
         <div className="h-screen md:flex">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-br from-blue-400 to-green-400 i justify-around items-center hidden">
@@ -51,6 +52,7 @@ function Signup() {
       </div>
     
     );
+    
 }
 
 export default Signup;

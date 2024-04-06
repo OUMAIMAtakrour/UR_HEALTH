@@ -1,9 +1,18 @@
 import React from 'react';
+import PatientPage from '../Components/PatientPage';
+import Departments from '../Components/Departments';
+import Blog from '../Components/Blog';
+import Testimonials from '../Components/Testimonials';
 
 function Home() {
     return (
         <div>
-           HOME 
+         <PatientPage/>
+         <Departments/>
+         <Blog/>
+         <Testimonials/>
+        
+
         </div>
     );
 }
