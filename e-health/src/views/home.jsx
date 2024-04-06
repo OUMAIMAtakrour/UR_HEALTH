@@ -3,14 +3,17 @@ import PatientPage from '../Components/PatientPage';
 import Departments from '../Components/Departments';
 import Blog from '../Components/Blog';
 import Testimonials from '../Components/Testimonials';
+import Footer from '../Components/Footer';
 
 function Home() {
     return (
         <div>
          <PatientPage/>
-         <Departments/>
+         <Departments/>  
+        <Testimonials/>
          <Blog/>
-         <Testimonials/>
+         <Footer/>
+    
         
 
         </div>

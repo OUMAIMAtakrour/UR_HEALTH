@@ -40,3 +40,30 @@ body{
 blockquote div img{
     width: 20%;
 }
+.back-color{
+   
+    border-radius: 10px;
+    height: 700px;
+    background: rgb(178,230,253);
+    background: linear-gradient(48deg, rgba(178,230,253,1) 0%, rgba(155,216,241,1) 58%, rgba(27,3,178,0.7625175070028012) 100%);}
+
+
+#doctor{
+
+        background: rgb(178,230,253);
+    background: linear-gradient(48deg, rgba(178,230,253,1) 0%, rgba(155,216,241,1) 58%, rgba(27,3,178,0.7625175070028012) 100%);
+
+
+}
+    .contains{
+    width: 100vw;
+}
+.emergency{
+    width: 19vw;
+}
+.back-color{
+   
+    border-radius: 10px;
+    height: 700px;
+    background: rgb(178,230,253);
+    background: linear-gradient(48deg, rgba(178,230,253,1) 0%, rgba(155,216,241,1) 58%, rgba(27,3,178,0.7625175070028012) 100%);}

@@ -71,7 +71,8 @@ function Blog() {
           </div>
         </div>
             <div class="grid grid-rows-3 grid-flow-col gap-0 aside mx-5">
-  <div><div className="card1 flex flex-col pt-6 pr-5 pb-2.5 pl-12 bg-white rounded-t-xl  max-md:pl-5 max-md:max-w-full">
+  <div>
+    <div className="card1 flex flex-col pt-6 pr-5 pb-2.5 pl-12 bg-white rounded-t-xl  max-md:pl-5 max-md:max-w-full">
               <div className="flex  max-md:mx-2.5">
                 <img
                   loading="lazy"

@@ -7,7 +7,7 @@ function Testimonials() {
       <section className="bg-white">
   <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
     <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-      Read trusted reviews from our customers
+      OUR TOP DOCTORS
     </h2>
 
     <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
@@ -16,7 +16,7 @@ function Testimonials() {
           <img
             alt=""
             src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-            className=" rounded-full object-cover"
+            className="rounded-full object-cover"
           />
 
 <div className="flex items-center">
