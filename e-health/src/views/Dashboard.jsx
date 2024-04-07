@@ -24,7 +24,7 @@ export default function Dashboard(){
         
               <PatientTable/>
            
-          
+      
           </div>
         </div>
        

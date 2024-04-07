@@ -67,3 +67,8 @@ blockquote div img{
     height: 700px;
     background: rgb(178,230,253);
     background: linear-gradient(48deg, rgba(178,230,253,1) 0%, rgba(155,216,241,1) 58%, rgba(27,3,178,0.7625175070028012) 100%);}
+
+
+.bg-stripe {
+        background: linear-gradient(to right, #4c51bf, #6b46c1);
+      }

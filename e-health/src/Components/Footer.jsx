@@ -75,7 +75,7 @@ function Footer() {
           
         </div>
         <div className="flex-auto">
-              Copyright 2024. YOUR HEALTH Rights Reserved.{" "}
+             &copy; Copyright 2024. YOUR HEALTH Rights Reserved.{" "}
             </div>
       </div>
     );

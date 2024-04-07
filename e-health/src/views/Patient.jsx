@@ -3,17 +3,24 @@ import React from 'react';
 import Steps from '../Components/Steps';
 import CallToAction from '../Components/CallToAction';
 import Hero from '../Components/Hero';
-import MyComponent from '../Components/MyComponent';
+import OurServices from '../Components/OurServices';
+import Footer from '../Components/Footer';
+import Departments from '../Components/FAQ';
 
 
 function Patient() {
     return (
-        <div>
-            <Hero/>
-            <CallToAction/>
-            <MyComponent/>
+    <>
+     <Hero/> 
             <Steps/>
-        </div>
+            <OurServices/>
+            <CallToAction/>
+            <Departments/>
+            <Footer/>
+            </>
+           
+           
+           
     );
 }
 
