@@ -9,7 +9,7 @@ const Departments = () => {
     {
       id: 2,
       title: 'Department 1',
-      image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&',
+      image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ee115acefa10ecbed63e15a890c39f69eb61a3b24203e8e3daa47b1e9ca7130f?apiKey=37ec813b063f430c8cec37fffc22655e&',
       icon: 'https://example.com/nature1-icon.svg'
     },
     {
@@ -30,6 +30,7 @@ const Departments = () => {
       image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/28ea9130b8a7009693ac4ab78f908b65c55f04f9a0544790fc034e5ccca353ab?apiKey=37ec813b063f430c8cec37fffc22655e&',
       icon: 'https://example.com/nature1-icon.svg'
     },
+
    
   ];
 
@@ -38,10 +39,10 @@ const Departments = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-10">
+    <div className="bg-gray-100 py-10 h-1/2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Departments</h2>
-        <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-5 gap-2">
+        <div className="flex flex-row gap-1">
           {departments.map((department, index) => (
             <div
               key={department.id}

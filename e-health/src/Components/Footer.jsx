@@ -3,7 +3,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <div className="flex flex-col px-12 py-16 bg-white max-md:px-5">
+      <footer className="flex flex-col mt-8 px-12 py-16 bg-white max-md:px-5 mx-15">
         <div className="flex gap-5 justify-between items-start max-md:flex-wrap max-md:pr-5 max-md:mr-1.5 max-md:max-w-full">
           <div className="flex flex-col self-end mt-6 max-md:max-w-full">
             <div className="text-4xl text-blue-950 max-md:max-w-full">
@@ -28,6 +28,7 @@ function Footer() {
           </div>
         </div>
         <div className="rounded-full flex  gap-10  my-5 self-start px-8 py-4 mt-2 text-xl font-semibold rounded-3xl border-2 border-blue-400 border-solid text-black text-opacity-50 max-md:px-5">
+        
          <input type="text" placeholder=' example@gmail.com' className="justify-center rounded-full items-start self-start px-8 py-4 mt-2 text-xl font-semibold rounded-3xl border-2 border-blue-400 border-solid text-black text-opacity-50 max-md:px-5" />
       
            
@@ -41,16 +42,9 @@ function Footer() {
           </div></button>
        
         </div>
-        <div className="flex gap-5 justify-between self-end mt-52 max-w-full w-[841px] max-md:flex-wrap max-md:mt-10 max-md:mr-1.5">
-          <div className="flex gap-1.5 self-start text-base text-black">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/bb6c9420bb7f64098c22129685d1145248d08a9ef722568ed60112a0ada01e2a?apiKey=37ec813b063f430c8cec37fffc22655e&"
-              className="shrink-0 w-6 aspect-square fill-black"
-            />
-          
-          </div>
-          <div className="flex gap-5 justify-between">
+        
+        
+          <div className="flex gap-5 justify-end  ">
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e2b845a40bd94a2a9b8fd9a3a05bada4dcb394d443154d1140e3817597b6e88?apiKey=37ec813b063f430c8cec37fffc22655e&"
@@ -71,13 +65,16 @@ function Footer() {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/ee61344fe360d708ee25939f734a9de1df3a82abeb33d63b4e9581d7241e49ec?apiKey=37ec813b063f430c8cec37fffc22655e&"
               className="shrink-0 aspect-[0.48] fill-black w-[15px]"
             />
-          </div>
-          
-        </div>
-        <div className="flex-auto">
-             &copy; Copyright 2024. YOUR HEALTH Rights Reserved.{" "}
+         
+         
             </div>
-      </div>
+          
+           <span className="mx-auto py-5">
+             &copy; Copyright 2024. YOUR HEALTH Rights Reserved.{" "}
+            </span>
+        
+       
+      </footer>
     );
 }
 

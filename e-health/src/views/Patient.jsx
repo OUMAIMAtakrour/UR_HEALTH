@@ -6,16 +6,20 @@ import Hero from '../Components/Hero';
 import OurServices from '../Components/OurServices';
 import Footer from '../Components/Footer';
 import Departments from '../Components/FAQ';
+import Example from '../Components/PatientNavbar';
 
 
 function Patient() {
     return (
     <>
-     <Hero/> 
+    <Example/>
+   <Hero/> 
+     
             <Steps/>
             <OurServices/>
             <CallToAction/>
             <Departments/>
+        
             <Footer/>
             </>
            

@@ -17,7 +17,7 @@ function PatientPage() {
        
         </div>   <div className="flex-auto my-auto">YOUR HEALTH</div>
         <div className="flex-auto self-start font-[275] max-md:max-w-full">
-            <ul className="flex flex-row gap-5 ">
+            <ul className="flex  gap-5 my-8 flex-end">
                 <li> <a href="">Blogs |</a></li>
                 <li> <a href="">Appointments | </a></li>
                 <li>  <a href="">Doctors |</a></li>
@@ -34,8 +34,8 @@ function PatientPage() {
               OUR PRIORTY
             </div>
           </div>
-          <div className="flex flex-col px-10 w-[24%] max-md:ml-0 max-md:w-full ">
-            <button className="justify-center  book px-9 py-5 mt-8 w-full text-2xl font-light text-black  rounded-[43px] max-md:px-5 max-md:mt-10">
+          <div className="flex flex-col  w-[28%] max-md:ml-0 max-md:w-full ">
+            <button className="justify-center book px-9 py-5 mt-8  text-3xl font-light text-black  rounded-[43px] max-md:px-5 max-md:mt-10">
               Book Appointment{" "}
             </button>
           </div>
@@ -50,8 +50,8 @@ function PatientPage() {
             </div>
           </div>
           <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-            <div className="rectangle flex flex-col grow justify-center px-1 w-full bg-white bg-opacity-10 rounded-[500px_500px_0px_0px] max-md:mt-10 max-md:max-w-full">
-            <div className="rectangle2 flex flex-col grow justify-center px-1  mt-6 bg-white bg-opacity-50 rounded-[500px_500px_0px_0px] max-md:mt-10 max-md:max-w-full">
+            <div className="rectangle flex flex-col grow justify-center px-1 w-full h-auto bg-white bg-opacity-50 rounded-[500px_500px_0px_0px] max-md:mt-10 max-md:max-w-full">
+            <div className="rectangle2 flex flex-col grow justify-center px-1 w-28 h-auto  mt-6 bg-white bg-opacity-70 rounded-[500px_500px_0px_0px] max-md:mt-10 max-md:max-w-full">
               <img
                 loading="lazy"
                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/a82502f87ff9ca673a270fbbaae67986a1de31734ec932f49729b65c592894bf?apiKey=37ec813b063f430c8cec37fffc22655e&"

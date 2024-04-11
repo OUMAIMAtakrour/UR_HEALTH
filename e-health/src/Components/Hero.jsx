@@ -1,10 +1,10 @@
 
 function Hero() {
     return (
-      <section className="back-color mx-5 pl-14 mt-32 max-w-full rounded-3xl w-[1363px] max-md:pl-5 max-md:mt-10">
-        <div className=" flex gap-5 max-md:flex-col max-md:gap-0">
+      <section className="mt-8 max-w-full rounded-3xl w-[1363px] max-md:pl-5 max-md:mt-10">
+        <div className="back-color flex gap-5 max-md:flex-col max-md:gap-0 mx-5">
           <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col mt-20 max-md:mt-10 max-md:max-w-full">
+            <div className="flex flex-col mx-6 mt-20 max-md:mt-10 max-md:max-w-full">
               <h1 className="text-6xl font-bold text-white leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]">
                 A Complete Health Care Solution App
               </h1>

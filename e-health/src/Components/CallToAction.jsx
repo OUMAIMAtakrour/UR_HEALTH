@@ -5,7 +5,7 @@
 
 function CallToAction() {
     return (
-      <div className="mx-4 calltoaction">
+      <div className=" calltoaction">
       <div  id="doctor" className="flex flex-col pr-1.5 pb-11 pl-20 mt-80 w-full rounded-2xl max-w-[1467px] max-md:pl-5 max-md:mt-10 max-md:max-w-full">
         <div className="z-10 mt-0 max-md:max-w-full">
           <div className="flex justify-between  max-md:flex-col max-md:gap-0" >
