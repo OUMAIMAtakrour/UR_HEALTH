@@ -6,6 +6,7 @@ import GuestLayout from "./Components/GuestLayout";
 import Patient from "./views/Patient";
 import DashUser from "./views/DashUser";
 import Form from "./views/Form";
+import BlogPage from "./views/BlogPage";
 
 const router = createBrowserRouter([
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     {
         path:'/form',
         element:<Form/>
+    },
+    {
+        path:'/Blog',
+        element:<BlogPage/>
     },
 
 ])

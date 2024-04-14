@@ -49,12 +49,15 @@ function Blog() {
   </div>
 </div>
 <div class="relative w-full bg-white  border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-  <img class="w-full h-auto rounded-xl" src="https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&" alt="Image Description"/>
+  <img class="w-full h-auto rounded-xl" 
+  src="https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/55f2b397e2cb0e5c86d58adeec4cffb4dda24f4bcc3bdc30094d3c3de3d3ad35?apiKey=37ec813b063f430c8cec37fffc22655e&" 
+  alt="Image Description"/>
   <div class="absolute top-0 start-0 end-0">
-    <div class="p-14 md:p-5 columns-10">
+    <div class="px-14 md:p-5 ">
       <h3 class="text-lg font-bold text-gray-800">
-        Card title
+        Blog title
       </h3>
+      
       <p class="mt-1 text-gray-800">
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </p>
@@ -64,6 +67,8 @@ function Blog() {
     </div>
   </div>
 </div>
+
+
 
 
               </div>

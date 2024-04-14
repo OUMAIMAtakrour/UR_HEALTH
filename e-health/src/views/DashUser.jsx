@@ -13,7 +13,7 @@ function DashUser(props) {
         <div className=''> 
             <MedicineTable/>
             </div>
-       
+       <Calendar/>
         </div>
     );
 }

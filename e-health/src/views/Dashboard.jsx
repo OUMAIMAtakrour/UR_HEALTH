@@ -1,13 +1,20 @@
 
 import React from "react";
+import {Navigate} from "react-router-dom";
 import Aside from "../Components/aside";
 import Dash_navbar from "../Components/Dash_navbar";
 import PatientTable from "../Components/PatientTable";
 import VisitsChart from "../Components/Chart";
 import Stats from "../Components/Stats";
+import { userStateContext } from "../contexts/ContextProvider";
+import router from "../router";
 
 
 export default function Dashboard(){
+  const {currentUser,userToken}= userStateContext();
+  if (!userToken){
+    return <Navigate to='signup'/>
+  }
     return(
         <div>
        <Dash_navbar/>
