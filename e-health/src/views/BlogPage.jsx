@@ -61,25 +61,26 @@ function BlogPage() {
           </div>
         </header>
   
-        {/* Content Section */}
+     
         <div className="flex flex-col flex-grow justify-center">
           <div className="bg-white px-8 py-4 rounded-lg shadow-lg w-full max-w-7xl flex items-center text-center">
-            <h1 className="text-6xl font-bold">Welcome to our platform</h1>
+            <h1 className="text-6xl font-bold mx-auto">Welcome to our platform</h1>
           </div>
-          {/* Replace with your BlogCard components */}
-          <div className="flex flex-wrap gap-4 p-8">
+      
+          <div className="flex flex-wrap gap-4 p-8 rounded-lg">
             <BlogCard
-              imageSrc="blog_post_image_1.jpg" // Replace with your blog post image
+              imageSrc="src/assets/img/493727c8a3c48102359c181173600f6f.jpg" 
               title="Blog Post Title 1"
               category="Technology"
             />
             <BlogCard
-              imageSrc="blog_post_image_2.jpg"
+              imageSrc="src/assets/img/783446e073d1ffd141e2b0e22b54dbda.jpg"
               title="Blog Post Title 2"
               category="Design"
+              className="rounded-lg"
             />
             <BlogCard
-              imageSrc="blog_post_image_3.jpg"
+              imageSrc="src/assets/img/493727c8a3c48102359c181173600f6f.jpg"
               title="Blog Post Title 3"
               category="Marketing"
             />

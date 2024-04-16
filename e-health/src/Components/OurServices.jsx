@@ -6,15 +6,15 @@ function OurServices() {
     ];
   
     const colors = {
-      backgroundColor: "bg-white",
+      
       textColor: "text-black",
       buttonColor: "bg-blue-300 text-white"
     };
   
     return (
-      <div className={`flex flex-col py-20 ${colors.backgroundColor}`}>
-        <div className="back-color">
-          <div className="self-center text-6xl font-bold text-indigo-700 max-md:text-4xl">
+      <div className={`flex flex-col py-20 `}>
+        <div className="back-color text-center">
+          <div className=" text-6xl font-bold text-indigo-700 max-md:text-4xl">
             Our Services
           </div>
           <div className="flex justify-center items-center px-16 mt-48 w-full rounded-2xl max-md:px-5 max-md:mt-10 max-md:max-w-full">

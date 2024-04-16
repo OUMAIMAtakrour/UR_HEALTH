@@ -7,6 +7,8 @@ import Patient from "./views/Patient";
 import DashUser from "./views/DashUser";
 import Form from "./views/Form";
 import BlogPage from "./views/BlogPage";
+import DocView from "./views/DocView";
+import Login from "./views/Login";
 
 const router = createBrowserRouter([
 
@@ -40,6 +42,15 @@ const router = createBrowserRouter([
         path:'/Blog',
         element:<BlogPage/>
     },
+    {
+        path:'/doc',
+        element:<DocView/>
+    },
+    {
+        path:'/login',
+        element:<Login/>
+    },
+
 
 ])
 export default router ;
