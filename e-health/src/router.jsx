@@ -9,6 +9,7 @@ import Form from "./views/Form";
 import BlogPage from "./views/BlogPage";
 import DocView from "./views/DocView";
 import Login from "./views/Login";
+import AddMed from "./Components/AddMed";
 
 const router = createBrowserRouter([
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
     {
         path:'/login',
         element:<Login/>
+    },
+    {
+        path:'/addMed',
+        element:<AddMed/>
     },
 
 
