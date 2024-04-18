@@ -6,14 +6,14 @@ import Dash_navbar from "../Components/Dash_navbar";
 import PatientTable from "../Components/PatientTable";
 import VisitsChart from "../Components/Chart";
 import Stats from "../Components/Stats";
-import { userStateContext } from "../contexts/ContextProvider";
+import { useStateContext } from "../contexts/ContextProvider";
 import router from "../router";
 
 
 export default function Dashboard(){
-  const {currentUser,userToken}= userStateContext();
+  const {currentUser,userToken}= useStateContext();
   if (!userToken){
-    return <Navigate to='signup'/>
+    return <Navigate to='/signup'/>
   }
     return(
         <div>

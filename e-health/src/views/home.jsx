@@ -4,6 +4,7 @@ import Departments from '../Components/Departments';
 import Blog from '../Components/Blog';
 import Testimonials from '../Components/Testimonials';
 import Footer from '../Components/Footer';
+import AddPostForm from '../Components/AddBlog';
 
 function Home() {
     return (
@@ -11,6 +12,7 @@ function Home() {
          <PatientPage/>
          <Departments/>  
         <Testimonials/>
+        <AddPostForm/>
          <Blog/>
          <Footer/>
     
