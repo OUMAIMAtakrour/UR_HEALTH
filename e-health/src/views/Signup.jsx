@@ -26,7 +26,7 @@ function Signup() {
                 setCurrentUser(data.user);
                 localStorage.setItem("userToken", data.access_token);
 
-                navigate("/");
+                navigate("/blog");
             })
             .catch(({ error }) => {
                 if (error.response) {

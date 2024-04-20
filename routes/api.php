@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,8 @@ Route::apiResource('blog', BlogController::class);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/medicines', [DashboardController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::apiResource('category', CategoryController::class);
+});

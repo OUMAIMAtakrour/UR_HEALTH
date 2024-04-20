@@ -3,6 +3,7 @@ import Dash_navbar from "../Components/Dash_navbar";
 import Aside from "../Components/aside";
 import Calendar from "../Components/Calendar";
 import MedicineTable from "../Components/MedicineTable";
+import axiosClient from "../axios";
 import { Link } from "react-router-dom";
 
 const DashUser = (props) => {

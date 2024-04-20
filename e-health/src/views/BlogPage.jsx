@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 
 const BlogCard = ({ imageSrc, title, category }) => {
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-lg w-64 h-auto">
+    <div className="flex flex-col bg-white rounded-2xl shadow-lg w-64 h-auto">
       <img
         src={imageSrc}
         alt="Blog post image"
-        className="w-full h-48 object-cover object-center"
+        className="w-full h-48 object-cover object-center rounded-2xl"
       />
       <div className="px-8 py-4">
         <h2 className="text-xl font-bold">{title}</h2>
@@ -21,7 +21,7 @@ const BlogCard = ({ imageSrc, title, category }) => {
 
 
 
-function BlogPage() {
+function BlogPage({blog}) {
     const [hovered, setHovered] = useState(false);
   
     return (
@@ -63,11 +63,11 @@ function BlogPage() {
   
      
         <div className="flex flex-col flex-grow justify-center">
-          <div className="bg-white px-8 py-4 rounded-lg shadow-lg w-full max-w-7xl flex items-center text-center">
+          <div className="bg-white py-6 rounded-lg shadow-lg mx-6 my-4 max-w-7xl flex items-center text-center">
             <h1 className="text-6xl font-bold mx-auto">Welcome to our platform</h1>
           </div>
       
-          <div className="flex flex-wrap gap-4 p-8 rounded-lg">
+          <div className="flex flex-wrap gap-4 p-8 ">
             <BlogCard
               imageSrc="src/assets/img/493727c8a3c48102359c181173600f6f.jpg" 
               title="Blog Post Title 1"

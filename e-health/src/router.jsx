@@ -10,6 +10,7 @@ import BlogPage from "./views/BlogPage";
 import DocView from "./views/DocView";
 import Login from "./views/Login";
 import AddMed from "./Components/AddMed";
+import CatDash from "./views/CatDash";
 
 const router = createBrowserRouter([
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
     {
         path:'/addMed',
         element:<AddMed/>
+    },
+    {
+        path:'/category',
+        element:<CatDash/>
     },
 
 
