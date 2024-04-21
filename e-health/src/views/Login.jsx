@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 import axiosClient from "../axios";
 import { useStateContext } from "../contexts/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const { setCurrentUser, setUserToken } = useStateContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     const [error, setError] = useState({ __html: "" });
 
     const onSubmit = (ev) => {
@@ -21,6 +23,7 @@ function Login() {
             .then(({ data }) => {
                 setCurrentUser(data.user);
                 setUserToken(data.token);
+                navigate("/categories");
             })
             .catch((error) => {
                 if (error.response) {

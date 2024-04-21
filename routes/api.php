@@ -28,5 +28,5 @@ Route::get('/medicines', [DashboardController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::apiResource('category', CategoryController::class);
+    Route::apiResource('categories', CategoryController::class);
 });

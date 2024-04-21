@@ -7,10 +7,14 @@ const axiosClient = axios.create({
 })
 
 axiosClient.interceptors.request.use((config)=>{
-    const token ='123'
-    config.headers.Authorization =`Bearer ${token}`
-    return config
-})
+    const token =localStorage.getItem("userToken")
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 axiosClient.interceptors.response.use(response=>{
     return response;

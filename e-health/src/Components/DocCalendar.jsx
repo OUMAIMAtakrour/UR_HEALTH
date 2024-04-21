@@ -35,7 +35,7 @@ const Calendar = () => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-4 w-2/3 float-right mr-20 mt-20 ">
+        <div className="bg-white rounded-lg shadow-md p-4 w-1/3 float-right mt-20 mr-4 sticky h-full">
             <div className="flex justify-between items-center mb-4">
                 <button
                     className="px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none"
@@ -54,11 +54,11 @@ const Calendar = () => {
                     {">"}
                 </button>
             </div>
-            <div className="grid grid-cols-7 gap-2">
+            <div className="grid grid-cols-7 gap-1">
                 {getWeekdays().map((weekday, index) => (
                     <div
                         key={index}
-                        className="bg-gray-200 px-4 py-2 font-bold text-center"
+                        className="bg-gray-200 px-2 py-2 font-bold text-center rounded"
                     >
                         {weekday}
                     </div>

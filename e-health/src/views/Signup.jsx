@@ -3,30 +3,46 @@ import axiosClient from "../axios";
 import { data } from "autoprefixer";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
+import axios from "axios";
 
 function Signup() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        password: "",
+    });
+    // const [name, setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
     const [error, setError] = useState({ __html: "" });
     const navigate = useNavigate();
     const { setCurrentUser, setUserToken } = useStateContext();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser((prevInputs) => ({
+            ...prevInputs,
+            [name]: value,
+        }));
+    };
 
     const onSubmit = (ev) => {
         ev.preventDefault();
         setError({ __html: "" });
 
-        axiosClient
-            .post("/signup", {
-                name: name,
-                email,
-                password,
-            })
-            .then(({ data }) => {
-                setCurrentUser(data.user);
-                localStorage.setItem("userToken", data.access_token);
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(user)) {
+            formData.append(key, value);
+        }
 
-                navigate("/blog");
+        axiosClient
+            .post("/signup", formData)
+            .then(({ data }) => {
+                console.log(data);
+                setCurrentUser(data.user);
+                localStorage.setItem("userToken", data.token);
+
+                navigate("/categories");
             })
             .catch(({ error }) => {
                 if (error.response) {
@@ -90,10 +106,9 @@ function Signup() {
                             className="pl-2 outline-none border-none"
                             type="text"
                             name="name"
-                            id
                             placeholder="Full name"
-                            value={name}
-                            onChange={(ev) => setName(ev.target.value)}
+                            value={user.name}
+                            onChange={handleChange}
                             required
                         />
                     </div>
@@ -122,10 +137,9 @@ function Signup() {
                             className="pl-2 outline-none border-none"
                             type="text"
                             name="email"
-                            id
                             placeholder="Email Address"
-                            value={email}
-                            onChange={(ev) => setEmail(ev.target.value)}
+                            value={user.email}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -145,10 +159,9 @@ function Signup() {
                             className="pl-2 outline-none border-none"
                             type="text"
                             name="password"
-                            id
                             placeholder="Password"
-                            value={password}
-                            onChange={(ev) => setPassword(ev.target.value)}
+                            value={user.password}
+                            onChange={handleChange}
                         />
                     </div>
                     <button
