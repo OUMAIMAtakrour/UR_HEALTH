@@ -42,7 +42,7 @@ function Signup() {
                 setCurrentUser(data.user);
                 localStorage.setItem("userToken", data.token);
 
-                navigate("/categories");
+                navigate("/blog");
             })
             .catch(({ error }) => {
                 if (error.response) {

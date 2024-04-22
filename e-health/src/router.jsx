@@ -12,11 +12,12 @@ import Login from "./views/Login";
 import AddMed from "./Components/AddMed";
 import CatDash from "./views/CatDash";
 import CategoryDetails from "./Components/CategoryUpdate";
+import Signup from "./views/Signup";
 
 const router = createBrowserRouter([
     {
         path: "/signup",
-        element: <App />,
+        element: <Signup />,
     },
     {
         path: "/dashboard",

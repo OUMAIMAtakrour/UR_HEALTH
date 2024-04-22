@@ -7,9 +7,14 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\BlogResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\StoreBlogRequset;
+
+use Illuminate\Http\Response;
+
+use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequset;
+use App\Http\Resources\BlogsCollection;
 
 class BlogController extends Controller
 {
@@ -20,21 +25,43 @@ class BlogController extends Controller
         return BlogResource::collection(Blog::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')->paginate(10));
     }
-    public function store(StoreBlogRequset $request)
+    // public function store(StoreBlogRequest $request)    
+    // {
+    //     $data = $request->validate();
+    //     if (isset($data['image'])) {
+    //         $relativePath = $this->saveImage($data['image']);
+    //         $data['image'] = $relativePath;
+    //     }
+    //     $blog = Blog::create($data);
+    //     return new BlogResource($blog);
+    // }
+
+    public function store(StoreBlogRequest $request)
     {
-        $data = $request->validate();
-        if (isset($data['image'])) {
-            $relativePath = $this->saveImage($data['image']);
-            $data['image'] = $relativePath;
+        $validatedData = $request->validated();
+
+        if (auth()->check()) {
+            $validatedData['user_id'] = auth()->user()->id;
+        } else {
+            $validatedData['user_id'] = null;
         }
-        $blog = Blog::create($data);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $relativePath = $image->store('images', 'public');
+            $validatedData['image'] = $relativePath;
+        }
+
+        $blog = Blog::create($validatedData);
+
         return new BlogResource($blog);
     }
-    public function show(Blog $blog, Request $request)
+    public function Allblogs()
     {
-        $user = $request->user();
-        return new BlogResource($blog);
+       
+        return new BlogsCollection(Blog::all());
     }
+    
     private function saveImage($image)
     {
         // Check if image is valid base64 string
@@ -58,7 +85,7 @@ class BlogController extends Controller
             throw new \Exception('did not match data URI with image data');
         }
 
-        $dir = 'images/';
+        $dir = 'storage/app/public/images/';
         $file = Str::random() . '.' . $type;
         $absolutePath = public_path($dir);
         $relativePath = $dir . $file;
@@ -89,8 +116,8 @@ class BlogController extends Controller
     }
     public function destroy(Blog $blog, Request $request)
     {
-        $user = $request->user();
-        if ($user->id !== $blog->user_id) {
+        $user = Auth::id();
+        if ($user !== $blog->user_id) {
             return abort(403, 'Unauthorized action.');
         }
 
