@@ -12,7 +12,7 @@ function Home() {
          <PatientPage/>
          <Departments/>  
         <Testimonials/>
-        <AddPostForm/>
+        {/* <AddPostForm/> */}
          <Blog/>
          <Footer/>
     

@@ -13,6 +13,7 @@ import AddMed from "./Components/AddMed";
 import CatDash from "./views/CatDash";
 import CategoryDetails from "./Components/CategoryUpdate";
 import Signup from "./views/Signup";
+import ProfilePage from "./Components/Profile";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
     {
         path: "/categoryUpdate/:id",
         element: <CategoryDetails />,
+    },
+    {
+        path: "/profile",
+        element: <ProfilePage />,
     },
 ]);
 export default router;

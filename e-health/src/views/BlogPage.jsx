@@ -110,11 +110,11 @@ const BlogPage = () => {
                     ) : (
                         <p>No blogs found</p>
                     )}
-                     <BlogCard
-              imageSrc="src/assets/img/493727c8a3c48102359c181173600f6f.jpg" 
-              title="Blog Post Title 1"
-              category="Technology"
-            />
+                    <BlogCard
+                        imageSrc="src/assets/img/493727c8a3c48102359c181173600f6f.jpg"
+                        title="Blog Post Title 1"
+                        category="Technology"
+                    />
                 </div>
             </div>
         </div>
