@@ -21,18 +21,18 @@ export const AvatarImage = ({ alt, src }) => {
         <img
             alt={alt}
             src={src}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-1/2 h-full object-cover rounded-full"
         />
     );
 };
 
-// export const AvatarFallback = ({ children }) => {
-//   return (
-//     <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
-//       {children}
-//     </div>
-//   );
-// };
+export const AvatarFallback = ({ children }) => {
+    return (
+        <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+            {children}
+        </div>
+    );
+};
 
 export const Avatar = ({ children }) => {
     return <div className="w-1/2 h-10 relative">{children}</div>;
@@ -213,20 +213,20 @@ export default function Component() {
         <div className="flex flex-col bg-white p-8">
             <div className="flex items-center justify-between border-b pb-4">
                 <h1 className="text-2xl font-semibold">Profile & Settings</h1>
-                <div className="flex items-center">
-                    <Progress
+                <div className="flex flex-row ">
+                    {/* <Progress
                         className="w-24 h-1 bg-gray-300 rounded-full mr-4"
                         value={30}
-                    />
+                    /> */}
                     <Avatar>
                         <AvatarImage
                             alt="Profile"
-                            src="/placeholder.svg?height=40&width=40"
+                            src="src/assets/img/65c44dca69cab286ae15dc81d0e5a6b9.jpg"
                         />
                         {/* <AvatarFallback>MO</AvatarFallback> */}
                     </Avatar>
-                    <div className="ml-2">
-                        <p className="font-semibold">Michael Oshim</p>
+                    <div className="flex">
+                        <p className="font-semibold ">Michael Oshim</p>
                         <Select
                             value={selectedOption}
                             onChange={handleOptionChange}
@@ -240,18 +240,16 @@ export default function Component() {
             </div>
             <div className="flex mt-6">
                 <div className="w-1/3 pr-8 ">
-                    <Card className="w-full border border-gray-400">
-                        <CardHeader className="flex flex-col items-center border-b p-4">
-                            <Avatar>
-                                <img
-                                    alt="Kanayo O Kanayo"
-                                    src="src/assets/img/65c44dca69cab286ae15dc81d0e5a6b9.jpg"
-                                    className="rounded-lg w-full"
-                                />
-                                {/* <AvatarFallback>KOK</AvatarFallback> */}
-                            </Avatar>
+                    <Card className="w-full border border-gray-400 bg-gray-200">
+                        <CardHeader className="flex flex-col items-center border-b ">
+                            <img
+                                alt="Kanayo O Kanayo"
+                                src="src/assets/img/65c44dca69cab286ae15dc81d0e5a6b9.jpg"
+                                className="rounded-lg w-full"
+                            />
+                            {/* <AvatarFallback>KOK</AvatarFallback> */}
                         </CardHeader>
-                        <CardContent className="mt-4">
+                        {/* <CardContent className="mt-4">
                             <h2 className="mt-2 text-lg font-semibold">
                                 Kanayo O Kanayo
                             </h2>
@@ -266,7 +264,7 @@ export default function Component() {
                                 <li>Terms & Privacy</li>
                                 <li>FAQs</li>
                             </ul>
-                        </CardContent>
+                        </CardContent> */}
                     </Card>
                 </div>
                 <div className="w-2/3 pl-4 space-y-6">
@@ -285,7 +283,7 @@ export default function Component() {
                             </p>
                             <p>
                                 <strong>Middle Name</strong>
-                                <br />—
+                                <br />— — —
                             </p>
                             <p>
                                 <strong>Last Name</strong>

@@ -14,6 +14,7 @@ import CatDash from "./views/CatDash";
 import CategoryDetails from "./Components/CategoryUpdate";
 import Signup from "./views/Signup";
 import ProfilePage from "./Components/Profile";
+import Booking from "./Components/Booking";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <ProfilePage />,
+    },
+    {
+        path: "/booking",
+        element: <Booking />,
     },
 ]);
 export default router;

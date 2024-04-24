@@ -60,6 +60,7 @@ const DashUser = (props) => {
                     </MedicineTable>
                 </div>
             )}
+            <Calendar/>
         </div>
     );
 };
