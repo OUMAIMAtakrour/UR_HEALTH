@@ -4,12 +4,13 @@ import axiosClient from "../axios.js";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
+
 const AddPostForm = () => {
     const { showToast } = useStateContext();
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const [blog, setBlog] = useState({
+    const [formData, setFormData] = useState({
         title: "",
         content: "",
         image: null,
@@ -18,17 +19,22 @@ const AddPostForm = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const onImageChoose = (ev) => {
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleImageChange = (ev) => {
         const file = ev.target.files[0];
 
         const reader = new FileReader();
         reader.onload = () => {
-            setSurvey({
-                ...survey,
+            setFormData({
+                ...formData,
                 image: file,
                 image_url: reader.result,
             });
-            ev.target.value = "";
+            ev.target.value = ""; // Clear the input field
+            setError(""); // Clear the error message
         };
         reader.readAsDataURL(file);
     };
@@ -36,53 +42,61 @@ const AddPostForm = () => {
     const onSubmit = (ev) => {
         ev.preventDefault();
 
-        const payload = { ...blog };
-        if (payload.image) {
-            payload.image = payload.image_url;
+        const formDataPayload = new FormData();
+        formDataPayload.append("title", formData.title);
+        formDataPayload.append("content", formData.content);
+        if (formData.image) {
+            formDataPayload.append("image", formData.image);
         }
-        delete payload.image_url;
+        // Remove the image_url attribute
+        const { image_url, ...payload } = formData;
+
         let res = null;
         if (id) {
-            res = axiosClient.put(`/blog${id}`, payload);
+            res = axiosClient.put(`/blog/${id}`, formDataPayload);
         } else {
-            res = axiosClient.post("/blog", payload);
+            res = axiosClient.post("/blog", formDataPayload);
         }
 
         res.then((res) => {
             console.log(res);
-            navigate("/");
+            navigate("/blog");
             if (id) {
-                showToast("The survey was updated");
+                showToast("The post was updated");
             } else {
-                showToast("The survey was created");
+                showToast("The post was created");
             }
         }).catch((err) => {
-            if (err && err.response) {
-                setError(err.response.data.message);
+            if (err && err.response && err.response.data) {
+                const errors = err.response.data.errors;
+                if (errors && errors.image) {
+                    setError(errors.image.join(", "));
+                } else {
+                    setError(err.response.data.message);
+                }
+            } else {
+                console.log(err);
             }
-            console.log(err, err.response);
         });
     };
-    const onDelete = () => {
 
-    }
-  
     useEffect(() => {
-      if (id) {
-        setLoading(true);
-        axiosClient.get(`/blog/${id}`).then(({ data }) => {
-          setSurvey(data.data);
-          setLoading(false);
-        });
-      }
-    }, []);
-  
+        if (id) {
+            setLoading(true);
+            axiosClient.get(`/blog/${id}`).then(({ data }) => {
+                setFormData({
+                    ...data.data,
+                    image_url: data.data.image, // Include the image_url
+                });
+                setLoading(false);
+            });
+        }
+    }, [id]);
 
     return (
-        
         <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Add New Post</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit} method="POST">
                 <div className="mb-4">
                     <label
                         htmlFor="title"
@@ -129,7 +143,7 @@ const AddPostForm = () => {
                         id="image"
                         name="image"
                         onChange={handleImageChange}
-                        accept="image/*"
+                        accept="image/jpeg, image/png, image/gif" // Accept only JPEG, PNG, and GIF files
                         className="block mt-1"
                     />
                 </div>

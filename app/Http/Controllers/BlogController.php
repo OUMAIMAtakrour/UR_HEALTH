@@ -58,10 +58,9 @@ class BlogController extends Controller
     }
     public function Allblogs()
     {
-       
         return new BlogsCollection(Blog::all());
     }
-    
+
     private function saveImage($image)
     {
         // Check if image is valid base64 string
@@ -85,7 +84,7 @@ class BlogController extends Controller
             throw new \Exception('did not match data URI with image data');
         }
 
-        $dir = 'storage/app/public/images/';
+        $dir = '/public/images';
         $file = Str::random() . '.' . $type;
         $absolutePath = public_path($dir);
         $relativePath = $dir . $file;
@@ -100,7 +99,7 @@ class BlogController extends Controller
     {
         $data = $request->validated();
 
-        // Check if image was given and save on local file system
+
         if (isset($data['image'])) {
             $relativePath = $this->saveImage($data['image']);
             $data['image'] = $relativePath;

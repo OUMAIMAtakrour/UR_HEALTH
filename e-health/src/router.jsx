@@ -74,5 +74,9 @@ const router = createBrowserRouter([
         path: "/booking",
         element: <Booking />,
     },
+    {
+        path: "/form",
+        element: <Form />,
+    },
 ]);
 export default router;

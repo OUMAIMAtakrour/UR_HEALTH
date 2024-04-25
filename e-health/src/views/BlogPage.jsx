@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axiosClient from "../axios"; // Assuming this is the configured axios instance
-
-// Define BlogCard component directly within the same file as BlogPage
+import axiosClient from "../axios";
+import AddPostForm from "../Components/AddBlog";
 const BlogCard = ({ imageSrc, title, content }) => {
     return (
         <div className="flex flex-col bg-white rounded-2xl shadow-lg w-64 h-auto">
@@ -13,7 +12,6 @@ const BlogCard = ({ imageSrc, title, content }) => {
             <div className="px-8 py-4">
                 <h2 className="text-xl font-bold">{title}</h2>
                 <p className="text-gray-700">Content: {content}</p>{" "}
-                {/* Display content instead of category */}
             </div>
         </div>
     );
@@ -27,16 +25,16 @@ const BlogPage = () => {
         const fetchBlogs = async () => {
             try {
                 const response = await axiosClient.get("/blogs");
-                const responseData = response.data; // Assuming response is an object containing data property
-                const blogsData = responseData.data; // Extract the array of blog data from the response
-                setBlogs(blogsData); // Update the state with the array of blog data
+                const responseData = response.data;
+                const blogsData = responseData.data;
+                setBlogs(blogsData);
             } catch (error) {
                 console.error("Error fetching blogs:", error);
             }
         };
 
         fetchBlogs();
-    }, []); // Empty dependency array means this effect runs once on component mount
+    }, []);
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -96,13 +94,13 @@ const BlogPage = () => {
                         Welcome to our platform
                     </h1>
                 </div>
+                <AddPostForm/>
                 <div className="flex flex-wrap gap-4 p-8">
-                    {/* Render BlogCards based on fetched blogs */}
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
                             <BlogCard
                                 key={blog.id}
-                                imageSrc={blog.imageSrc}
+                                imageSrc={`http://localhost:8000/storage/images/${blog.imageSrc}`}
                                 title={blog.title}
                                 content={blog.content}
                             />

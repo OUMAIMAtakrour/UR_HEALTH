@@ -23,7 +23,7 @@ function Login() {
             .then(({ data }) => {
                 setCurrentUser(data.user);
                 setUserToken(data.token);
-                navigate("/categories");
+                navigate("/blog");
             })
             .catch((error) => {
                 if (error.response) {

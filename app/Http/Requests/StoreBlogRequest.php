@@ -32,7 +32,7 @@ class StoreBlogRequest extends FormRequest
             'user_id' => 'exists:users,id',
             'title' => 'required|string|max:100',
             'content' => 'required|string',
-            'image' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,gif',
 
         ];
     }

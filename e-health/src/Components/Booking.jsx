@@ -149,7 +149,7 @@ const AppointmentPage = () => {
 
     return (
         <div className="flex-1 flex flex-col items-center justify-center w-screen h-auto">
-            <div className="bg-white rounded-lg shadow-lg w-screen h-screen px-4 py-8 ">
+            <div className="bg-white rounded-lg shadow-lg w-screen h-screen px-4 py-8">
                 <div className="flex">
                     <div className="w-2/3 px-6">
                         <img

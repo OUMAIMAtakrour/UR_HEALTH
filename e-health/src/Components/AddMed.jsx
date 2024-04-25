@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 
 const AddMedicineForm = () => {
-   
     const [medicineName, setMedicineName] = useState("");
     const [medicinePrice, setMedicinePrice] = useState("");
     const [medicineCategory, setMedicineCategory] = useState("");
 
-    
     const handleSubmit = (e) => {
         e.preventDefault();
-      
+
         const newMedicine = {
             name: medicineName,
-            price: parseFloat(medicinePrice), 
+            price: parseFloat(medicinePrice),
             category: medicineCategory,
         };
         console.log("New Medicine:", newMedicine);
