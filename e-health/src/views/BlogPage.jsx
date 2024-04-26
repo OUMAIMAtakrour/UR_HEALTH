@@ -3,11 +3,11 @@ import axiosClient from "../axios";
 import AddPostForm from "../Components/AddBlog";
 const BlogCard = ({ imageSrc, title, content }) => {
     return (
-        <div className="flex flex-col bg-white rounded-2xl shadow-lg w-64 h-auto">
+        <div className="flex flex-col bg-white rounded-lg shadow-lg w-64 h-auto">
             <img
                 src={imageSrc}
                 alt="Blog post image"
-                className="w-full h-48 object-cover object-center rounded-2xl"
+                className="w-full h-48 object-cover object-center rounded-t-lg  bg-cover bg-center"
             />
             <div className="px-8 py-4">
                 <h2 className="text-xl font-bold">{title}</h2>
@@ -94,13 +94,13 @@ const BlogPage = () => {
                         Welcome to our platform
                     </h1>
                 </div>
-                <AddPostForm/>
-                <div className="flex flex-wrap gap-4 p-8">
+                <AddPostForm />
+                <div className="flex flex-wrap gap-10 px-8 py-8">
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
                             <BlogCard
                                 key={blog.id}
-                                imageSrc={`http://localhost:8000/storage/images/${blog.imageSrc}`}
+                                imageSrc={`http://localhost:8000/storage/${blog.image}`}
                                 title={blog.title}
                                 content={blog.content}
                             />

@@ -4,6 +4,8 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import React, { useState, useRef } from "react";
+import Aside from "./aside";
+import Dash_navbar from "./Dash_navbar";
 
 // Progress component
 export const Progress = ({ value, className }) => {

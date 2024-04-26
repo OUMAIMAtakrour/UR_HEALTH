@@ -84,7 +84,7 @@ class BlogController extends Controller
             throw new \Exception('did not match data URI with image data');
         }
 
-        $dir = '/public/images';
+        $dir = 'public/images';
         $file = Str::random() . '.' . $type;
         $absolutePath = public_path($dir);
         $relativePath = $dir . $file;
