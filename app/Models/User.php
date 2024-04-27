@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Admin;
+use App\Models\Doctor;
+use App\Models\Patient;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-  
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -49,5 +53,19 @@ class User extends Authenticatable
     public function Category(): HasMany
     {
         return $this->hasMany(Category::class, 'user_id');
+    }
+    public function admins()
+    {
+        return $this->hasOne(Admin::class, 'user_id');
+    }
+
+    public function doctors()
+    {
+        return $this->hasOne(Doctor::class, 'user_id');
+    }
+
+    public function patients()
+    {
+        return $this->hasOne(Patient::class, 'user_id');
     }
 }

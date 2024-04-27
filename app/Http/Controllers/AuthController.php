@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Doctor;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
@@ -16,12 +19,32 @@ class AuthController extends Controller
 
         $data = $request->validated();
 
+        $role = $data['role'] ?? 'patient';
+
         /** @var \App\Models\User $user */
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $role,
             'password' => bcrypt($data['password'])
         ]);
+
+        if ($role === 'patient') {
+            Patient::create([
+                'user_id' => $user->id,
+              
+            ]);
+        } elseif ($role === 'admin') {
+            Admin::create([
+                'user_id' => $user->id,
+               
+            ]);
+        } elseif ($role === 'doctor') {
+            Doctor::create([
+                'user_id' => $user->id,
+               
+            ]);
+        }
         $token = $user->createToken('main')->plainTextToken;
 
         return response([

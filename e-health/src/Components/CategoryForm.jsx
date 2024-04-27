@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import axiosClient from "../axios";
+import axiosClient from "../helpers/axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useStateContext } from "../contexts/ContextProvider";

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axiosClient from "../axios";
+import axiosClient from "../helpers/axios";
 import AddPostForm from "../Components/AddBlog";
+import { useStateContext } from "../contexts/ContextProvider";
+import { Navigate } from "react-router-dom";
 const BlogCard = ({ imageSrc, title, content }) => {
+    const { currentUser, userToken } = useStateContext();
+    if (!userToken) {
+        return <Navigate to="/signup" />;
+    }
     return (
         <div className="flex flex-col bg-white rounded-lg shadow-lg w-64 h-auto">
             <img
@@ -38,7 +44,6 @@ const BlogPage = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            {/* Hero Section */}
             <header
                 style={{ height: `70vh` }}
                 className="w-full text-center text-white text-3xl bg-indigo-500"
@@ -87,14 +92,19 @@ const BlogPage = () => {
                 </div>
             </header>
 
-            {/* Main Content Section */}
             <div className="flex flex-col flex-grow justify-center">
                 <div className="bg-white py-6 rounded-lg shadow-lg mx-6 my-4 max-w-7xl flex items-center text-center">
                     <h1 className="text-6xl font-bold mx-auto">
                         Welcome to our platform
                     </h1>
                 </div>
-                <AddPostForm />
+                <button
+                    type="button"
+                    className="bg-purple-500 text-white py-2 font-bold w-3/12 float-right rounded-md hover:bg-purple-600 focus:outline-none focus:bg-blue-600"
+                >
+                    Add Article
+                </button>
+
                 <div className="flex flex-wrap gap-10 px-8 py-8">
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
