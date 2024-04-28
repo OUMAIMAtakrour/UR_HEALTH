@@ -25,5 +25,11 @@ axiosClient.interceptors.response.use(response=>{
     }
     throw error;
 })
+
+
+export const logout = () => {
+    localStorage.removeItem('userToken'); 
+    router.navigate('/signup'); 
+};
 export default axiosClient;
 

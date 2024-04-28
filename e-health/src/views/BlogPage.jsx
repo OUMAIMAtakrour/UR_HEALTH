@@ -3,7 +3,40 @@ import axiosClient from "../helpers/axios";
 import AddPostForm from "../Components/AddBlog";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Navigate } from "react-router-dom";
-import BlogCard from "../Components/BlogCard";
+// import BlogCard from "../Components/BlogCard";
+
+
+const BlogCard = ({ imageSrc, title, content }) => {
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await axiosClient.get("/blogs");
+                const responseData = response.data;
+                const blogsData = responseData.data;
+                setBlogs(blogsData);
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
+    return (
+        <div className="flex flex-col bg-white rounded-lg shadow-lg w-64 h-auto">
+            <img
+                src={imageSrc}
+                alt="Blog post image"
+                className="w-full h-48 object-cover object-center rounded-t-lg  bg-cover bg-center"
+            />
+            <div className="px-8 py-4">
+                <h2 className="text-xl font-bold">{title}</h2>
+                <p className="text-gray-700">Content: {content}</p>{" "}
+            </div>
+        </div>
+    );
+};
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([]);
@@ -67,7 +100,7 @@ const BlogPage = () => {
                 </div>
                 <button
                     type="button"
-                    className="bg-purple-500 text-white py-2 font-bold w-3/12 float-right rounded-md hover:bg-purple-600 focus:outline-none focus:bg-blue-600"
+                    className="bg-purple-500 text-white py-2 font-bold w-3/12 float-right rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-700"
                 >
                     Add Article
                 </button>
