@@ -43,7 +43,7 @@ function Signup() {
                 localStorage.setItem("userToken", data.token);
                 switch (data.user.role) {
                     case "patient":
-                        navigate("/blog");
+                        navigate("/blogpage");
                         break;
                     case "doctor":
                         navigate("/doc");
@@ -52,7 +52,7 @@ function Signup() {
                         navigate("/dashboard");
                         break;
                     default:
-                        navigate("/"); // Default fallback route
+                        navigate("/"); 
                         break;
                 }
             })

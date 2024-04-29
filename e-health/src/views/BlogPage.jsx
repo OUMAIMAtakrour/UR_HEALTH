@@ -3,10 +3,11 @@ import axiosClient from "../helpers/axios";
 import AddPostForm from "../Components/AddBlog";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import BlogCard from "../Components/BlogCard";
 
-
 const BlogCard = ({ imageSrc, title, content }) => {
+    const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -39,6 +40,10 @@ const BlogCard = ({ imageSrc, title, content }) => {
 };
 
 const BlogPage = () => {
+    // const { currentUser, userToken } = useStateContext();
+    // if (!userToken) {
+    //     return <Navigate to="/signup" />;
+    // }
     const [blogs, setBlogs] = useState([]);
     const [hovered, setHovered] = useState(false);
 
@@ -102,7 +107,7 @@ const BlogPage = () => {
                     type="button"
                     className="bg-purple-500 text-white py-2 font-bold w-3/12 float-right rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-700"
                 >
-                    Add Article
+                    <Link to="/addblog">Add Article</Link>
                 </button>
 
                 <div className="flex flex-wrap gap-10 px-8 py-8">

@@ -60,7 +60,7 @@ const AddPostForm = () => {
 
         res.then((res) => {
             console.log(res);
-            navigate("/blog");
+            navigate("/blogpage");
             if (id) {
                 showToast("The post was updated");
             } else {

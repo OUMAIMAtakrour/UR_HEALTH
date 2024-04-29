@@ -4,6 +4,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { Navigate } from "react-router-dom";
 
 const BlogCard = ({ imageSrc, title, content }) => {
+    const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {

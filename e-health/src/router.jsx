@@ -15,7 +15,8 @@ import CategoryDetails from "./Components/CategoryUpdate";
 import Signup from "./views/Signup";
 import ProfilePage from "./Components/Profile";
 import Booking from "./Components/Booking";
-
+import AddPostForm from "./Components/AddBlog";
+import SingleBlog from "./Components/SingleBlog";
 const router = createBrowserRouter([
     {
         path: "/signup",
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         element: <Form />,
     },
     {
-        path: "/Blog",
+        path: "/Blogpage",
         element: <BlogPage />,
     },
     {
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
     {
         path: "/form",
         element: <Form />,
+    },
+    {
+        path: "/addblog",
+        element: <AddPostForm />,
+    },
+    {
+        path: "/singleblog",
+        element: <SingleBlog />,
     },
 ]);
 export default router;
