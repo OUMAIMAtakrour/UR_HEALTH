@@ -17,6 +17,7 @@ import ProfilePage from "./Components/Profile";
 import Booking from "./Components/Booking";
 import AddPostForm from "./Components/AddBlog";
 import SingleBlog from "./Components/SingleBlog";
+import DoctorList from "./Components/DoctorList";
 const router = createBrowserRouter([
     {
         path: "/signup",
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
     {
         path: "/singleblog",
         element: <SingleBlog />,
+    },
+    {
+        path: "/doctorlist",
+        element: <DoctorList />,
     },
 ]);
 export default router;

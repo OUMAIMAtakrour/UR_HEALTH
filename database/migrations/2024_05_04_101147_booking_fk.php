@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->enum('shifts', ['8:00', '9:00', '10:00', '11:00']);
-            $table->date('booking_date');
-            $table->timestamps();
+        Schema::table('bookings', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->unsignedBigInteger('doctor_id');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
         });
     }
 

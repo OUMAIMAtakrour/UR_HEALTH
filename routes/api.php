@@ -4,9 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,6 @@ Route::get('/medicines', [DashboardController::class, 'index']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('blog', BlogController::class);
     Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('booking', BookingController::class);
+    Route::apiResource('doctors', DoctorController::class);
 });

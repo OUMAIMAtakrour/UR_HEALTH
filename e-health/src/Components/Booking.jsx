@@ -2,142 +2,142 @@ import React, { useState, useRef, useEffect } from "react";
 
 // import Calendar from "react-calendar";
 
-const Calendar = ({ onDateSelect }) => {
-    const [currentMonth, setCurrentMonth] = useState(new Date());
+// const Calendar = ({ onDateSelect }) => {
+//     const [currentMonth, setCurrentMonth] = useState(new Date());
 
-    const renderDays = () => {
-        const daysInMonth = new Date(
-            currentMonth.getFullYear(),
-            currentMonth.getMonth() + 1,
-            0
-        ).getDate();
+//     const renderDays = () => {
+//         const daysInMonth = new Date(
+//             currentMonth.getFullYear(),
+//             currentMonth.getMonth() + 1,
+//             0
+//         ).getDate();
 
-        const firstDayOfMonth = new Date(
-            currentMonth.getFullYear(),
-            currentMonth.getMonth(),
-            1
-        ).getDay();
+//         const firstDayOfMonth = new Date(
+//             currentMonth.getFullYear(),
+//             currentMonth.getMonth(),
+//             1
+//         ).getDay();
 
-        const days = [];
-        let date = 1;
+//         const days = [];
+//         let date = 1;
 
-        // Generate calendar rows
-        for (let i = 0; i < 6; i++) {
-            const week = [];
+//         // Generate calendar rows
+//         for (let i = 0; i < 6; i++) {
+//             const week = [];
 
-            // Generate days for each week
-            for (let j = 0; j < 7; j++) {
-                if (i === 0 && j < firstDayOfMonth) {
-                    // Days from the previous month
-                    week.push(null);
-                } else if (date > daysInMonth) {
-                    // Days from the next month
-                    week.push(null);
-                } else {
-                    // Current month days
-                    const currentDate = new Date(
-                        currentMonth.getFullYear(),
-                        currentMonth.getMonth(),
-                        date
-                    );
-                    week.push(currentDate);
-                    date++;
-                }
-            }
+//             // Generate days for each week
+//             for (let j = 0; j < 7; j++) {
+//                 if (i === 0 && j < firstDayOfMonth) {
+//                     // Days from the previous month
+//                     week.push(null);
+//                 } else if (date > daysInMonth) {
+//                     // Days from the next month
+//                     week.push(null);
+//                 } else {
+//                     // Current month days
+//                     const currentDate = new Date(
+//                         currentMonth.getFullYear(),
+//                         currentMonth.getMonth(),
+//                         date
+//                     );
+//                     week.push(currentDate);
+//                     date++;
+//                 }
+//             }
 
-            days.push(week);
-        }
+//             days.push(week);
+//         }
 
-        return (
-            <div className="grid grid-cols-7 gap-2 text-center">
-                {days.map((week, i) => (
-                    <React.Fragment key={i}>
-                        {week.map((day, j) => (
-                            <div
-                                key={`${i}-${j}`}
-                                className={`w-10 h-10 flex items-center justify-center cursor-pointer rounded-full ${
-                                    !day ? "text-gray-400" : ""
-                                } ${
-                                    day &&
-                                    day.toDateString() ===
-                                        new Date().toDateString()
-                                        ? "bg-blue-500 text-white"
-                                        : ""
-                                }`}
-                                onClick={() => {
-                                    if (day) {
-                                        onDateSelect(day);
-                                    }
-                                }}
-                            >
-                                {day ? (
-                                    <div>
-                                        {/* <div className="text-xs font-semibold">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][j]}</div> */}
-                                        <div className="text-lg">
-                                            {day.getDate()}
-                                        </div>
-                                    </div>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </div>
-        );
-    };
+//         return (
+//             <div className="grid grid-cols-7 gap-2 text-center">
+//                 {days.map((week, i) => (
+//                     <React.Fragment key={i}>
+//                         {week.map((day, j) => (
+//                             <div
+//                                 key={`${i}-${j}`}
+//                                 className={`w-10 h-10 flex items-center justify-center cursor-pointer rounded-full ${
+//                                     !day ? "text-gray-400" : ""
+//                                 } ${
+//                                     day &&
+//                                     day.toDateString() ===
+//                                         new Date().toDateString()
+//                                         ? "bg-blue-500 text-white"
+//                                         : ""
+//                                 }`}
+//                                 onClick={() => {
+//                                     if (day) {
+//                                         onDateSelect(day);
+//                                     }
+//                                 }}
+//                             >
+//                                 {day ? (
+//                                     <div>
+//                                         {/* <div className="text-xs font-semibold">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][j]}</div> */}
+//                                         <div className="text-lg">
+//                                             {day.getDate()}
+//                                         </div>
+//                                     </div>
+//                                 ) : (
+//                                     ""
+//                                 )}
+//                             </div>
+//                         ))}
+//                     </React.Fragment>
+//                 ))}
+//             </div>
+//         );
+//     };
 
-    const prevMonth = () => {
-        setCurrentMonth(
-            new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
-        );
-    };
+//     const prevMonth = () => {
+//         setCurrentMonth(
+//             new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
+//         );
+//     };
 
-    const nextMonth = () => {
-        setCurrentMonth(
-            new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
-        );
-    };
+//     const nextMonth = () => {
+//         setCurrentMonth(
+//             new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
+//         );
+//     };
 
-    return (
-        <div className="bg-white rounded-lg shadow-lg p-4 h-auto">
-            <div className="flex justify-between items-center mb-4">
-                <button
-                    onClick={prevMonth}
-                    className="text-gray-500 hover:text-gray-700"
-                >
-                    &lt;
-                </button>
-                <span className="font-semibold">
-                    {currentMonth.toLocaleString("default", {
-                        month: "long",
-                        year: "numeric",
-                    })}
-                </span>
-                <button
-                    onClick={nextMonth}
-                    className="text-gray-500 hover:text-gray-700"
-                >
-                    &gt;
-                </button>
-            </div>
-            <div className="grid grid-cols-7 gap-2 text-center">
-                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                    (day, index) => (
-                        <div
-                            key={index}
-                            className="text-gray-500 font-semibold"
-                        >
-                            {day}
-                        </div>
-                    )
-                )}
-            </div>
-            {renderDays()}
-        </div>
-    );
-};
+//     return (
+//         <div className="bg-white rounded-lg shadow-lg p-4 h-auto">
+//             <div className="flex justify-between items-center mb-4">
+//                 <button
+//                     onClick={prevMonth}
+//                     className="text-gray-500 hover:text-gray-700"
+//                 >
+//                     &lt;
+//                 </button>
+//                 <span className="font-semibold">
+//                     {currentMonth.toLocaleString("default", {
+//                         month: "long",
+//                         year: "numeric",
+//                     })}
+//                 </span>
+//                 <button
+//                     onClick={nextMonth}
+//                     className="text-gray-500 hover:text-gray-700"
+//                 >
+//                     &gt;
+//                 </button>
+//             </div>
+//             <div className="grid grid-cols-7 gap-2 text-center">
+//                 {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+//                     (day, index) => (
+//                         <div
+//                             key={index}
+//                             className="text-gray-500 font-semibold"
+//                         >
+//                             {day}
+//                         </div>
+//                     )
+//                 )}
+//             </div>
+//             {renderDays()}
+//         </div>
+//     );
+// };
 
 const AppointmentPage = () => {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -148,12 +148,12 @@ const AppointmentPage = () => {
     };
 
     return (
-        <div className="flex bg-white rounded-lg shadow-lg h-auto">
-            <div className="w-2/3 px-6">
+        <div className="flex bg-white rounded-lg shadow-lg">
+            <div className="w-2/3 px-6 h-screen">
                 <img
                     src="src/assets/img/65c44dca69cab286ae15dc81d0e5a6b9.jpg"
                     alt=""
-                    className="w-1/3 ml-20 object-cover rounded-full"
+                    className="w-1/4 h-1/5 ml-20 mt-10 rounded-full"
                 />
                 <h2 className="text-lg font-semibold mb-2 py-4">
                     Dr. Jane Doe
@@ -165,7 +165,7 @@ const AppointmentPage = () => {
                     providing comprehensive, personalized care to her patients.
                 </p>
             </div>
-            <div className="w-2/3 py-4 px-6">
+            <div className="w-2/3 py-4 px-6 mt-10 mr-4">
                 <h1 className="text-2xl font-bold mb-4">
                     Available Appointment Times
                 </h1>
@@ -221,9 +221,9 @@ const AppointmentPage = () => {
                                 />
                             </svg>
                         </button>
-                        {showCalendar && (
+                        {/* {showCalendar && (
                             <Calendar onDateSelect={setSelectedDate} />
-                        )}
+                        )} */}
                     </div>
                 </div>
                 <button className="bg-indigo-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-600">
