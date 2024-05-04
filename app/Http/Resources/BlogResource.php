@@ -18,6 +18,12 @@ class BlogResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'image' => $this->image,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'doctor_id' => $this->doctor_id,
+            'category_id' => $this->category_id,
+            'category_name' => $this->category->category_name, 
         ];
     }
 }

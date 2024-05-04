@@ -23,7 +23,21 @@ function Login() {
             .then(({ data }) => {
                 setCurrentUser(data.user);
                 setUserToken(data.token);
-                navigate("/blog");
+                switch (data.user.role) {
+                    case "patient":
+                        navigate("/blogpage");
+                        break;
+                    case "doctor":
+                        navigate("/doc");
+                        break;
+                    case "admin":
+                        navigate("/doc");
+                        break;
+                    default:
+                        navigate("/"); 
+                        break;
+                }
+               
             })
             .catch((error) => {
                 if (error.response) {

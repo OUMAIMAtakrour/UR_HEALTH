@@ -14,9 +14,10 @@ function CategoryList(props) {
         const fetchCategory = async () => {
             try {
                 const response = await axiosClient.get("/categories");
+                console.log("Category API Response:", response);
+    
                 if (response.status === 200) {
                     setCategory(response.data.data);
-                    console.log("ddddx", response.data.data);
                 } else {
                     console.error(
                         "Error fetching categories:",
@@ -31,9 +32,10 @@ function CategoryList(props) {
                 setLoading(false);
             }
         };
-
+    
         fetchCategory();
     }, []);
+    
 
     const showToast = (message) => {
         toast.success(message, {});

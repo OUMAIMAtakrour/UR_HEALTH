@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
     public function Category(): HasMany
     {
-        return $this->hasMany(Category::class, 'user_id');
+        return $this->hasMany(Category::class, 'admin_id');
     }
     public function admins()
     {

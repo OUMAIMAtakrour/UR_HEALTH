@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axiosClient from "../helpers/axios.js";
-import { v4 as uuidv4 } from "uuid";
-import { useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 
 const AddPostForm = () => {
@@ -14,10 +13,12 @@ const AddPostForm = () => {
         title: "",
         content: "",
         image: null,
+        category_id: "",
     });
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [categories, setCategories] = useState([]);
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,26 +40,39 @@ const AddPostForm = () => {
         reader.readAsDataURL(file);
     };
 
-    const onSubmit = (ev) => {
+    const fetchCategories = async () => {
+        try {
+            const response = await axiosClient.get("/category");
+            setCategories(response.data.data);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const onSubmit = async (ev) => {
         ev.preventDefault();
 
         const formDataPayload = new FormData();
         formDataPayload.append("title", formData.title);
         formDataPayload.append("content", formData.content);
+        formDataPayload.append("category_id", formData.category_id);
         if (formData.image) {
             formDataPayload.append("image", formData.image);
         }
-        // Remove the image_url attribute
+
         const { image_url, ...payload } = formData;
 
-        let res = null;
-        if (id) {
-            res = axiosClient.put(`/blog/${id}`, formDataPayload);
-        } else {
-            res = axiosClient.post("/blog", formDataPayload);
-        }
-
-        res.then((res) => {
+        try {
+            let res = null;
+            if (id) {
+                res = await axiosClient.put(`/blog/${id}`, formDataPayload);
+            } else {
+                res = await axiosClient.post("/blog", formDataPayload);
+            }
             console.log(res);
             navigate("/blogpage");
             if (id) {
@@ -66,7 +80,7 @@ const AddPostForm = () => {
             } else {
                 showToast("The post was created");
             }
-        }).catch((err) => {
+        } catch (err) {
             if (err && err.response && err.response.data) {
                 const errors = err.response.data.errors;
                 if (errors && errors.image) {
@@ -77,21 +91,8 @@ const AddPostForm = () => {
             } else {
                 console.log(err);
             }
-        });
-    };
-
-    useEffect(() => {
-        if (id) {
-            setLoading(true);
-            axiosClient.get(`/blog/${id}`).then(({ data }) => {
-                setFormData({
-                    ...data.data,
-                    image_url: data.data.image, // Include the image_url
-                });
-                setLoading(false);
-            });
         }
-    }, [id]);
+    };
 
     return (
         <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -133,6 +134,31 @@ const AddPostForm = () => {
                 </div>
                 <div className="mb-4">
                     <label
+                        htmlFor="category"
+                        className="block text-sm font-medium text-gray-700"
+                    >
+                        Category:
+                    </label>
+                    <select
+                        id="category"
+                        name="category_id"
+                        value={formData.category_id}
+                        onChange={handleInputChange}
+                        required
+                        className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    >
+                        <option value="" className="text-black">
+                            Select Category
+                        </option>
+                        {categories.map(([category]) => (
+                            <option key={category.id} value={category.id}>
+                                {category.category_name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="mb-4">
+                    <label
                         htmlFor="image"
                         className="block text-sm font-medium text-gray-700"
                     >
@@ -143,7 +169,7 @@ const AddPostForm = () => {
                         id="image"
                         name="image"
                         onChange={handleImageChange}
-                        accept="image/jpeg, image/png, image/gif" // Accept only JPEG, PNG, and GIF files
+                        accept="image/*"
                         className="block mt-1"
                     />
                 </div>
@@ -154,6 +180,7 @@ const AddPostForm = () => {
                     Add Post
                 </button>
             </form>
+            <ToastContainer />
         </div>
     );
 };

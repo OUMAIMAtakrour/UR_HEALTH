@@ -1,29 +1,37 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import axiosClient from "../helpers/axios";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import axiosClient from "../helpers/axios";
 import { useStateContext } from "../contexts/ContextProvider";
-import { v4 as uuidv4 } from "uuid";
 
 const ProgressForm = () => {
-    const { showToast } = useStateContext();
+    const { showToast, currentUser } = useStateContext();
     const navigate = useNavigate();
     const { id } = useParams();
     const [category, setCategory] = useState({
+        id: null,
+        admin_id: currentUser ? currentUser.admin_id : null,
         category_name: "",
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (id) {
-            setLoading(true);
-            axiosClient.get(`/categories/${id}`).then(({ data }) => {
-                setCategory(data.data);
-                setLoading(false);
-            });
-        }
+        const fetchCategory = async () => {
+            if (id) {
+                setLoading(true);
+                try {
+                    const response = await axiosClient.get(`/categories/${id}`);
+                    setCategory(response.data.data);
+                } catch (error) {
+                    console.error("Error fetching category:", error);
+                    setError("Failed to fetch category");
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchCategory();
     }, [id]);
 
     const onSubmit = async (e) => {
@@ -35,18 +43,20 @@ const ProgressForm = () => {
             } else {
                 res = await axiosClient.post("/categories", category);
             }
-            console.log("Progress created/updated:", res.data);
+            console.log("Category created/updated:", res.data);
             if (id) {
-                showToast("The progress was updated");
+                showToast("The category was updated");
             } else {
-                showToast("The progress was created");
+                showToast("The category was created");
             }
             navigate("/categories");
         } catch (error) {
-            if (error && error.response) {
+            if (error.response && error.response.data) {
                 setError(error.response.data.message);
+            } else {
+                setError("An error occurred");
             }
-            console.error("Error creating/updating progress:", error);
+            console.error("Error creating/updating category:", error);
         }
     };
 
@@ -60,7 +70,7 @@ const ProgressForm = () => {
                 <form onSubmit={onSubmit}>
                     <div className="mb-4">
                         <label
-                            htmlFor="weight"
+                            htmlFor="category_name"
                             className="block text-sm font-medium text-gray-700"
                         >
                             Category Name:
@@ -75,7 +85,6 @@ const ProgressForm = () => {
                                     category_name: e.target.value,
                                 })
                             }
-                            step="0.01"
                             required
                             className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
@@ -85,7 +94,7 @@ const ProgressForm = () => {
                         type="submit"
                         className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600"
                     >
-                        Save Progress
+                        Save Category
                     </button>
                 </form>
             </div>

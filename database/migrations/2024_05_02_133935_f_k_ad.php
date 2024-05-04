@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('booking', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('patient_id')->constrained('patients');
-            $table->foreignId('doctor_id')->constrained('doctors');
-            $table->enum('shifts', ['8:00', '9:00', '10:00', '11:00']);
-            $table->timestamps();
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('admin_id');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

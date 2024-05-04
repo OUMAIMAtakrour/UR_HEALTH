@@ -29,9 +29,10 @@ class StoreBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'exists:users,id',
+            'doctor_id' => 'exists:users,id',
             'title' => 'required|string|max:100',
             'content' => 'required|string',
+            'category_id' => 'required|string',
             'image' => 'nullable|file|mimes:jpg,jpeg,png,gif',
 
         ];

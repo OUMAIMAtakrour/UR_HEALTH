@@ -49,7 +49,7 @@ function Signup() {
                         navigate("/doc");
                         break;
                     case "admin":
-                        navigate("/dashboard");
+                        navigate("/doc");
                         break;
                     default:
                         navigate("/"); 

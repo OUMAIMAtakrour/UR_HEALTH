@@ -22,7 +22,7 @@ const SingleArticle = ({ article }) => {
             </section>
 
             <div className="w-full mx-4">
-                <figure className="mb-8 flex justify-around gap-3 my-10">
+                <figure className="mb-8 flex justify-around gap-3 my-10 ">
                     <div className="flex flex-col justify-between">
                         <div className="flex gap-2 ">
                             <span className="text-blue-800 font-bold">
@@ -56,7 +56,7 @@ const SingleArticle = ({ article }) => {
                     <img
                         src={thumbnail}
                         alt={title}
-                        className="w-1/3 h-2/3 mx-8 rounded-lg thumbnail"
+                        className="w-1/2 h-2/3 mx-8 rounded-lg thumbnail"
                     />
                 </figure>
                 <div

@@ -2,28 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Doctor;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Resources\BlogResource;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Response;
 
+use App\Http\Resources\BlogResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreBlogRequest;
-use App\Http\Requests\UpdateBlogRequset;
 use App\Http\Resources\BlogsCollection;
+use App\Http\Requests\BlogSearchRequest;
+use App\Http\Requests\UpdateBlogRequset;
+use App\Http\Resources\BlogSearchResource;
 
 class BlogController extends Controller
 {
-    public function index(Request $request)
-    {
+    // public function Allblogs(Request $request)
+    // {
+    //     $user = $request->user();
+    //      $blogs = Blog::where('doctor_id', $user->id)
+    //     ->with('category') // Load the 'category' relationship
+    //     ->orderBy('created_at', 'desc')
+    //     ->paginate(10);
 
-        $user = $request->user();
-        return BlogResource::collection(Blog::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')->paginate(10));
+    // // Transform the collection using BlogResource to include category name
+    // return BlogResource::collection($blogs);
+    // }
+
+
+    public function search(BlogSearchRequest $request)
+    {
+        // Retrieve the validated search query from the request
+        $searchQuery = $request->validated()['query'];
+
+        // Query the blogs based on the search query
+        $filteredBlogs = Blog::where('title', 'like', '%' . $searchQuery . '%')->get();
+
+        // Transform the filtered blogs using the resource class
+        $transformedBlogs = BlogSearchResource::collection($filteredBlogs);
+
+        return response()->json([
+            'data' => $transformedBlogs,
+        ]);
     }
     // public function store(StoreBlogRequest $request)    
     // {
@@ -38,28 +64,58 @@ class BlogController extends Controller
 
     public function store(StoreBlogRequest $request)
     {
+
         $validatedData = $request->validated();
 
-        if (auth()->check()) {
-            $validatedData['user_id'] = auth()->user()->id;
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // Retrieve the authenticated user
+            $authenticatedUser = Auth::user();
+
+            // Check if the authenticated user has the 'doctor' role
+            if ($authenticatedUser->role === 'doctor') {
+                $doctor = $authenticatedUser->doctor;
+
+                // If the doctor record doesn't exist, create a new one
+                if (!$doctor) {
+                    $doctor = Doctor::create([
+                        'user_id' => $authenticatedUser->id,
+                        // Add any other required fields for the Doctor model
+                    ]);
+                }
+
+                // Check if the category exists
+                $categoryId = $validatedData['category_id'];
+                $category = Category::find($categoryId);
+
+                if ($category) {
+                    // Set the doctor_id based on the associated doctor record
+                    $validatedData['doctor_id'] = $doctor->id;
+
+                    // Handle image upload if provided
+                    if ($request->hasFile('image')) {
+                        $image = $request->file('image');
+                        $relativePath = $image->store('images', 'public');
+                        $validatedData['image'] = $relativePath;
+                    }
+
+                    // Create the blog entry
+                    $blog = Blog::create($validatedData);
+
+                    // Return a success response
+                    return response()->json(['message' => 'Blog created successfully', 'blog' => $blog], 201);
+                } else {
+                    return response()->json(['error' => 'Invalid category ID'], 400);
+                }
+            } else {
+                return response()->json(['error' => 'Unauthorized'], 403);
+            }
         } else {
-            $validatedData['user_id'] = null;
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $relativePath = $image->store('images', 'public');
-            $validatedData['image'] = $relativePath;
-        }
-
-        $blog = Blog::create($validatedData);
-
-        return new BlogResource($blog);
     }
-    public function Allblogs()
-    {
-        return new BlogsCollection(Blog::all());
-    }
+
+
 
     private function saveImage($image)
     {

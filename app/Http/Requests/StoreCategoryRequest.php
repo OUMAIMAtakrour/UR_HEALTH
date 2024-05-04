@@ -23,6 +23,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'category_name' => 'required',
+           
         ];
     }
 }

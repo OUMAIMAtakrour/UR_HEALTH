@@ -5,8 +5,8 @@
 
 function CallToAction() {
     return (
-      <div className=" calltoaction h-1/2">
-      <div  id="doctor" className="flex flex-col pr-1.5 pb-11 pl-20 h-1/2 w-full rounded-2xl max-w-[1467px] max-md:pl-5 max-md:mt-10 max-md:max-w-full">
+      <div className=" calltoaction h-1/5 mx-6">
+      <div  id="doctor" className="relative flex flex-col pr-1.5 pb-11 pl-20 h-1/2 w-full rounded-2xl max-w-[1467px] max-md:pl-5 max-md:mt-10 max-md:max-w-full">
         <div className="z-10 mt-0 max-md:max-w-full">
           <div className="flex justify-between  max-md:flex-col max-md:gap-0" >
             <div className="flex flex-col w-3/5 max-md:ml-0 max-md:w-full">

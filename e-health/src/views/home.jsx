@@ -9,6 +9,7 @@ import AddPostForm from '../Components/AddBlog';
 function Home() {
     return (
         <div>
+            
          <PatientPage/>
          <Departments/>  
         <Testimonials/>

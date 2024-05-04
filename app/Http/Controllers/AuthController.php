@@ -32,17 +32,17 @@ class AuthController extends Controller
         if ($role === 'patient') {
             Patient::create([
                 'user_id' => $user->id,
-              
+
             ]);
         } elseif ($role === 'admin') {
             Admin::create([
                 'user_id' => $user->id,
-               
+
             ]);
         } elseif ($role === 'doctor') {
             Doctor::create([
                 'user_id' => $user->id,
-               
+
             ]);
         }
         $token = $user->createToken('main')->plainTextToken;
@@ -75,17 +75,16 @@ class AuthController extends Controller
         ]);
     }
 
-    
+
     public function logout(Request $request)
     {
         /** @var User $user */
         $user = Auth::user();
-        // Revoke the token that was used to authenticate the current request...
+
         $user->currentAccessToken()->delete();
 
         return response([
             'success' => true
         ]);
     }
-
 }

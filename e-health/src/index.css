@@ -1,7 +1,7 @@
 
 
 
-body{
+html body{
     overflow-x: hidden;
     background-color: #F3F2F2;
     padding: 0;
@@ -13,7 +13,7 @@ body{
 }
 .all{
     border-radius: 20px;
-    width: 98vw;
+    width: 96vw;
     height: 110vh;}  
       
 
@@ -87,11 +87,11 @@ footer{
 
 
 
-.cards {
+/* .cards {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
-  }
+  } */
   
   .cards .red {
     background-color: #f43f5e;

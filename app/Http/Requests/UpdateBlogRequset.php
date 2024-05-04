@@ -26,9 +26,10 @@ class UpdateBlogRequset extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'exists:user,id',
+            'doctor_id' => 'exists:user,id',
             'title' => 'required|string|max:100',
             'content' => 'required|string',
+            'category_id' => 'required|string',
             'image' => 'nullable|string',
         ];
     }
