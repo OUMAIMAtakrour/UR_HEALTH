@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../helpers/axios"; // Assuming you have an Axios instance configured
+import axiosClient from "../helpers/axios"; 
+
 
 const DoctorList = () => {
     const [doctors, setDoctors] = useState([]);
