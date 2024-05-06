@@ -12,24 +12,28 @@ use App\Http\Requests\BookAppointmentRequest;
 
 class BookingController extends Controller
 {
+    public function getReservedSlots($doctorId)
+    {
+        $reservedSlots = Booking::where('doctor_id', $doctorId)
+            ->select('shifts', 'booking_date')
+            ->get();
+
+        return response()->json($reservedSlots);
+    }
     public function store(BookAppointmentRequest $request)
     {
         $validatedData = $request->validated();
 
-        // Get the authenticated user
         $user = Auth::user();
 
-        // Check if the authenticated user has the 'patient' role
         if ($user && $user->role === 'patient') {
-            // Retrieve the associated patient record
             $patient = Patient::where('user_id', $user->id)->first();
 
             if (!$patient) {
-                // If patient record not found for the user, return an error
                 return response()->json(['error' => 'Patient record not found'], 404);
             }
 
-            // Check for existing booking
+         
             $existingBooking = Booking::where('doctor_id', $validatedData['doctor_id'])
                 ->where('shifts', $validatedData['shifts'])
                 ->where('booking_date', $validatedData['booking_date'])
@@ -39,18 +43,16 @@ class BookingController extends Controller
                 return response()->json(['error' => 'The requested slot is already booked.'], 422);
             }
 
-            // Create a new booking
+            
             $booking = Booking::create([
-                'patient_id' => $patient->id, // Assign patient_id from the associated patient record
+                'patient_id' => $patient->id, 
                 'doctor_id' => $validatedData['doctor_id'],
                 'shifts' => $validatedData['shifts'],
-                'booking_date' => $validatedData['booking_date'],
+                'booking_date' => Carbon::parse($validatedData['booking_date']),
             ]);
 
-            // Return the created booking resource
             return new BookingResource($booking);
         } else {
-            // If user is not authenticated or does not have the 'patient' role, return an error
             return response()->json(['error' => 'Unauthorized'], 403);
         }
     }

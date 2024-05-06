@@ -31,9 +31,9 @@ const BlogCard = ({ imageSrc, title, content, category }) => {
             />
             <div className="px-8 py-4">
                 <h2 className="text-xl font-bold">{title}</h2>
-                <p className="text-black font-bold bg-gray-300 rounded-lg py-1 px-2 mb-2">
+                {/* <p className="text-black font-bold bg-gray-300 rounded-lg py-1 px-2 mb-2">
                     Category: {categoryName}
-                </p>
+                </p> */}
                 <p className="text-gray-700">Content: {content}</p>
             </div>
         </div>

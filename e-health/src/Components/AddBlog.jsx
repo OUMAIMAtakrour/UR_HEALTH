@@ -74,7 +74,7 @@ const AddPostForm = () => {
                 res = await axiosClient.post("/blog", formDataPayload);
             }
             console.log(res);
-            navigate("/blogpage");
+            navigate("/doc");
             if (id) {
                 showToast("The post was updated");
             } else {

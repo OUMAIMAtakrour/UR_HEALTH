@@ -18,6 +18,7 @@ import Booking from "./Components/Booking";
 import AddPostForm from "./Components/AddBlog";
 import SingleBlog from "./Components/SingleBlog";
 import DoctorList from "./Components/DoctorList";
+import DoctorBlogsPage from "./Components/MyBlog";
 const router = createBrowserRouter([
     {
         path: "/signup",
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
     },
 
     {
-        path: "/",
+        path: "/home",
         element: <Home />,
     },
     {
-        path: "/patient",
+        path: "/",
         element: <Patient />,
     },
     {
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
         element: <ProfilePage />,
     },
     {
-        path: "/booking",
+        path: "/doctor/:id",
         element: <Booking />,
     },
     {
@@ -85,12 +86,16 @@ const router = createBrowserRouter([
         element: <AddPostForm />,
     },
     {
-        path: "/singleblog",
+        path: "/blog/:id",
         element: <SingleBlog />,
     },
     {
         path: "/doctorlist",
         element: <DoctorList />,
+    },
+    {
+        path: "/myblog",
+        element: <DoctorBlogsPage />,
     },
 ]);
 export default router;

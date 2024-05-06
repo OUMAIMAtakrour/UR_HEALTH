@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosClient from "../helpers/axios";
 import { Link } from "react-router-dom";
 import BlogCard from "../Components/BlogCard";
+import LogoutButton from "../Components/Logout";
 
 const fetchBlogs = async (searchQuery = "") => {
     try {
@@ -50,37 +51,54 @@ const BlogPage = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            {/* Header section */}
-            <header className="w-full text-center text-white text-3xl bg-indigo-500">
-                {/* Header content here */}
+             <ul className="flex gap-3 text-black">
+                    <li>
+                        <LogoutButton />
+                    </li>
+                    <li>
+                    <Link to={"/doctorlist"}>  Doctors</Link>
+                    </li>
+                </ul>
+            <header className="w-full text-center text-white text-3xl bg-indigo-500 py-12">
+               
+                <h1 className="text-4xl font-bold mb-4">Welcome to Our Blog</h1>
+                <p className="text-lg">
+                    Discover interesting articles and insights from our
+                    contributors.
+                </p>
             </header>
-            {/* Main content section */}
+
             <div className="flex flex-col flex-grow justify-center">
-                {/* Display search input */}
-                <input
+                {/* <input
                     type="text"
                     placeholder="Search blogs..."
                     value={searchQuery}
                     onChange={handleSearchChange}
                     className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                 />
-                {/* Navigation to Add Blog page */}
+                
+            
                 <Link
                     to="/Addblog"
                     className="mb-4 text-blue-500 hover:text-blue-700"
                 >
                     Add New Blog
-                </Link>
-                {/* Display blogs based on filteredBlogs */}
-                <div className="flex flex-wrap gap-10 px-8 py-8">
-                {blogs.map((blog) => (
-                        <BlogCard
+                </Link> */}
+
+                <div className="flex  gap-4 px-8 py-8">
+                    {filteredBlogs.map((blog) => (
+                        <Link
                             key={blog.id}
-                            imageSrc={`http://localhost:8000/storage/${blog.image}`}
-                            title={blog.title}
-                            content={blog.content}
-                            category={blog.category_name} // Assuming 'category' is an object containing at least 'name'
-                        />
+                            to={`/blog/${blog.id}`}
+                            className="w-full"
+                        >
+                            <BlogCard
+                                imageSrc={`http://localhost:8000/storage/${blog.image}`}
+                                title={blog.title}
+                                content={blog.content}
+                                // category={blog.category_name}
+                            />
+                        </Link>
                     ))}
                 </div>
             </div>

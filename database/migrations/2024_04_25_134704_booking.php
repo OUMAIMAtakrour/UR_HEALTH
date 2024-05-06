@@ -14,6 +14,7 @@ return new class extends Migration
 
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            
             $table->enum('shifts', ['8:00', '9:00', '10:00', '11:00']);
             $table->date('booking_date');
             $table->timestamps();

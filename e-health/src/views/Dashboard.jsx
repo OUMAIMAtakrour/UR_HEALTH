@@ -9,10 +9,10 @@ import { useStateContext } from "../contexts/ContextProvider";
 import router from "../router";
 
 export default function Dashboard() {
-    const { currentUser, userToken } = useStateContext();
-    if (!userToken) {
-        return <Navigate to="/signup" />;
-    }
+    // const { currentUser, userToken } = useStateContext();
+    // if (!userToken) {
+    //     return <Navigate to="/signup" />;
+    // }
     return (
         <div>
             <Dash_navbar />

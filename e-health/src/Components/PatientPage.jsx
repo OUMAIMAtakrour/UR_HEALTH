@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import LogoutButton from "./Logout";
 
 function PatientPage() {
     return (
@@ -17,7 +18,7 @@ function PatientPage() {
                     <ul className="flex  gap-5 my-8 flex-end">
                         <li>
                             {" "}
-                            <a href="">Blogs |</a>
+                            <Link to={"/blogpage"}>Blogs |</Link>
                         </li>
                         <li>
                             {" "}
@@ -25,12 +26,15 @@ function PatientPage() {
                         </li>
                         <li>
                             {" "}
-                            <a href="">Doctors |</a>
+                            <Link to={"/doctorlist"}>Doctors |</Link>
                         </li>
-                        <li>
+                        <li className="text-black">
+                            <LogoutButton />
+                        </li>
+                        {/* <li>
                             {" "}
                             <a href="">Profile</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -44,7 +48,7 @@ function PatientPage() {
                     </div>
                     <div className="flex flex-col  w-[28%] max-md:ml-0 max-md:w-full ">
                         <button className="justify-center book px-9 py-5 mt-8  text-3xl font-thin text-black  max-md:px-5 max-md:mt-10 hover:bg-green-300 ">
-                            <Link to={"/bookings"}> Book Appointment </Link>
+                            <Link to={"/doctorlist"}> Book Appointment </Link>
                         </button>
                     </div>
                 </div>

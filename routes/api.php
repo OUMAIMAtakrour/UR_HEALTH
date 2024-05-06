@@ -32,6 +32,9 @@ Route::get('/category', [CategoryController::class, 'index']);
 Route::get('blogs/search', [BlogController::class, 'search']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/medicines', [DashboardController::class, 'index']);
+Route::get('/doctors/{doctorId}/reserved', [BookingController::class, 'getReservedSlots']);
+Route::get('/doctors/{id}/shifts', [DoctorController::class, 'getShifts']);
+Route::get('/myblog', [DoctorController::class, 'myBlog']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('blog', BlogController::class);

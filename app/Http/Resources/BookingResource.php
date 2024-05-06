@@ -16,8 +16,8 @@ class BookingResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'patient' => $this->patient->name, // Assuming 'name' property exists in the Patient model
-            'doctor' => $this->doctor->name, // Assuming 'name' property exists in the Doctor model
+            'patient' => $this->patient->name, 
+            'doctor' => $this->doctor->name, 
             'shifts' => $this->shifts,
             'booking_date' => $this->booking_date->format('Y-m-d'),
             'created_at' => $this->created_at,

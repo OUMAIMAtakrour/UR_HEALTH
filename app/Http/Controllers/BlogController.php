@@ -23,6 +23,13 @@ use App\Http\Resources\BlogSearchResource;
 
 class BlogController extends Controller
 {
+
+    public function show($id)
+    {
+        $blog = Blog::findOrFail($id); // Find blog by ID or throw 404 error if not found
+
+        return response()->json($blog);
+    }
     // public function Allblogs(Request $request)
     // {
     //     $user = $request->user();

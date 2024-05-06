@@ -1,237 +1,99 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axiosClient from "../helpers/axios";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
-// import Calendar from "react-calendar";
+const BookingProfile = () => {
+    const { id } = useParams();
+    const [doctor, setDoctor] = useState(null);
 
-// const Calendar = ({ onDateSelect }) => {
-//     const [currentMonth, setCurrentMonth] = useState(new Date());
+    useEffect(() => {
+        const fetchDoctorData = async () => {
+            try {
+                const response = await axiosClient.get(`/doctors/${id}`);
+                setDoctor(response.data);
+            } catch (error) {
+                console.error("Error fetching doctor profile:", error);
+            }
+        };
 
-//     const renderDays = () => {
-//         const daysInMonth = new Date(
-//             currentMonth.getFullYear(),
-//             currentMonth.getMonth() + 1,
-//             0
-//         ).getDate();
+        fetchDoctorData();
+    }, [id]);
 
-//         const firstDayOfMonth = new Date(
-//             currentMonth.getFullYear(),
-//             currentMonth.getMonth(),
-//             1
-//         ).getDay();
+    const handleBookAppointment = async (shift) => {
+        console.log("Shift clicked:", shift);
 
-//         const days = [];
-//         let date = 1;
+        const token = localStorage.getItem("userToken");
+        if (!token) {
+            console.error("User token not found in localStorage.");
+            return;
+        }
 
-//         // Generate calendar rows
-//         for (let i = 0; i < 6; i++) {
-//             const week = [];
+        try {
+            const bookingData = {
+                doctor_id: doctor.id,
+                shifts: shift,
+                booking_date: new Date().toISOString().split("T")[0], 
+            };
 
-//             // Generate days for each week
-//             for (let j = 0; j < 7; j++) {
-//                 if (i === 0 && j < firstDayOfMonth) {
-//                     // Days from the previous month
-//                     week.push(null);
-//                 } else if (date > daysInMonth) {
-//                     // Days from the next month
-//                     week.push(null);
-//                 } else {
-//                     // Current month days
-//                     const currentDate = new Date(
-//                         currentMonth.getFullYear(),
-//                         currentMonth.getMonth(),
-//                         date
-//                     );
-//                     week.push(currentDate);
-//                     date++;
-//                 }
-//             }
+            const updatedReservedSlots = [...doctor.reservedSlots, bookingData];
+            setDoctor({ ...doctor, reservedSlots: updatedReservedSlots });
 
-//             days.push(week);
-//         }
-
-//         return (
-//             <div className="grid grid-cols-7 gap-2 text-center">
-//                 {days.map((week, i) => (
-//                     <React.Fragment key={i}>
-//                         {week.map((day, j) => (
-//                             <div
-//                                 key={`${i}-${j}`}
-//                                 className={`w-10 h-10 flex items-center justify-center cursor-pointer rounded-full ${
-//                                     !day ? "text-gray-400" : ""
-//                                 } ${
-//                                     day &&
-//                                     day.toDateString() ===
-//                                         new Date().toDateString()
-//                                         ? "bg-blue-500 text-white"
-//                                         : ""
-//                                 }`}
-//                                 onClick={() => {
-//                                     if (day) {
-//                                         onDateSelect(day);
-//                                     }
-//                                 }}
-//                             >
-//                                 {day ? (
-//                                     <div>
-//                                         {/* <div className="text-xs font-semibold">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][j]}</div> */}
-//                                         <div className="text-lg">
-//                                             {day.getDate()}
-//                                         </div>
-//                                     </div>
-//                                 ) : (
-//                                     ""
-//                                 )}
-//                             </div>
-//                         ))}
-//                     </React.Fragment>
-//                 ))}
-//             </div>
-//         );
-//     };
-
-//     const prevMonth = () => {
-//         setCurrentMonth(
-//             new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
-//         );
-//     };
-
-//     const nextMonth = () => {
-//         setCurrentMonth(
-//             new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
-//         );
-//     };
-
-//     return (
-//         <div className="bg-white rounded-lg shadow-lg p-4 h-auto">
-//             <div className="flex justify-between items-center mb-4">
-//                 <button
-//                     onClick={prevMonth}
-//                     className="text-gray-500 hover:text-gray-700"
-//                 >
-//                     &lt;
-//                 </button>
-//                 <span className="font-semibold">
-//                     {currentMonth.toLocaleString("default", {
-//                         month: "long",
-//                         year: "numeric",
-//                     })}
-//                 </span>
-//                 <button
-//                     onClick={nextMonth}
-//                     className="text-gray-500 hover:text-gray-700"
-//                 >
-//                     &gt;
-//                 </button>
-//             </div>
-//             <div className="grid grid-cols-7 gap-2 text-center">
-//                 {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-//                     (day, index) => (
-//                         <div
-//                             key={index}
-//                             className="text-gray-500 font-semibold"
-//                         >
-//                             {day}
-//                         </div>
-//                     )
-//                 )}
-//             </div>
-//             {renderDays()}
-//         </div>
-//     );
-// };
-
-const AppointmentPage = () => {
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [showCalendar, setShowCalendar] = useState(false);
-
-    const handleDateClick = () => {
-        setShowCalendar(!showCalendar);
+            const response = await axiosClient.post("/booking", bookingData, {
+                headers: {
+                    Authorization: `Bearer ${token}`, 
+                },
+            });
+            toast.success("Appointment booked successfully!");
+            console.log("Appointment booked successfully:", response.data);
+        } catch (error) {
+            console.error("Error booking appointment:", error);
+            toast.error("Failed to book appointment. Please try again.");
+        }
     };
 
+    if (!doctor) {
+        return <p>Loading...</p>;
+    }
+
     return (
-        <div className="flex bg-white rounded-lg shadow-lg">
-            <div className="w-2/3 px-6 h-screen">
+        <div className="max-w-4xl mx-auto py-8">
+        <div className="bg-white shadow-md rounded-lg p-6">
+            <div className="flex items-center mb-6">
                 <img
-                    src="src/assets/img/65c44dca69cab286ae15dc81d0e5a6b9.jpg"
-                    alt=""
-                    className="w-1/4 h-1/5 ml-20 mt-10 rounded-full"
+                    src={`https://ui-avatars.com/api/?name=${doctor.users.name}&background=0D8ABC&color=fff&size=128`}
+                    alt={doctor.users.name}
+                    className="w-32 h-32 rounded-full mr-6"
                 />
-                <h2 className="text-lg font-semibold mb-2 py-4">
-                    Dr. Jane Doe
-                </h2>
-                <p className="text-gray-600 mb-4">Family Medicine</p>
-                <p className="text-gray-700 mb-6 px-4 w-2/3">
-                    Dr. Jane Doe is a board-certified family medicine physician
-                    with over 10 years of experience. She is passionate about
-                    providing comprehensive, personalized care to her patients.
-                </p>
+                <div>
+                    <h2 className="text-2xl font-semibold">{doctor.users.name}</h2>
+                    <p className="text-gray-600">{doctor.specialization}</p>
+                </div>
             </div>
-            <div className="w-2/3 py-4 px-6 mt-10 mr-4">
-                <h1 className="text-2xl font-bold mb-4">
-                    Available Appointment Times
-                </h1>
-                <div className="grid grid-cols-3 gap-8 mb-4">
-                    <div className="text-center border border-gray-400 rounded-md py-2 ">
-                        <span className="text-gray-500">9:00 AM</span>
+            <p className="text-gray-700 mb-6">{doctor.bio}</p>
+            <h3 className="text-lg font-semibold mb-4">Available Shifts</h3>
+            <div className="grid grid-cols-3 gap-4 mb-6">
+                {doctor.shifts.map((shift) => (
+                    <div
+                        key={shift}
+                        className={`text-center border rounded-md py-2 cursor-pointer ${
+                            doctor.reservedSlots.some(
+                                (reserved) => reserved.shifts === shift
+                            )
+                                ? "border-red-500 text-red-500"
+                                : "border-green-400 text-green-500"
+                        }`}
+                        onClick={() => handleBookAppointment(shift)}
+                    >
+                        <span>{shift}</span>
                     </div>
-                    <div className="text-center border border-gray-400 rounded-md py-2">
-                        <span className="text-gray-500">10:00 AM</span>
-                    </div>
-                    <div className="text-center border border-gray-400 rounded-md py-2">
-                        <span className="text-gray-500">11:00 AM</span>
-                    </div>
-                    <div className="text-center border border-gray-400 rounded-md py-2">
-                        <span className="text-gray-500">1:00 PM</span>
-                    </div>
-                    <div className="text-center border border-gray-400 rounded-md py-2">
-                        <span className="text-gray-500">2:00 PM</span>
-                    </div>
-                    <div className="text-center border border-gray-400 rounded-md py-2">
-                        <span className="text-gray-500">3:00 PM</span>
-                    </div>
-                </div>
-                <div className="mb-4">
-                    <label className="text-gray-700 font-semibold">
-                        Select a Date
-                    </label>
-                    <div className="relative">
-                        <input
-                            type="text"
-                            value={
-                                selectedDate
-                                    ? selectedDate.toLocaleDateString()
-                                    : "April 24, 2023"
-                            }
-                            readOnly
-                            className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <button
-                            onClick={handleDateClick}
-                            className="absolute right-2 top-2 focus:outline-none"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </button>
-                        {/* {showCalendar && (
-                            <Calendar onDateSelect={setSelectedDate} />
-                        )} */}
-                    </div>
-                </div>
-                <button className="bg-indigo-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-600">
-                    Book Appointment
-                </button>
+                ))}
             </div>
         </div>
+        <ToastContainer />
+    </div>
     );
 };
 
-export default AppointmentPage;
+export default BookingProfile;

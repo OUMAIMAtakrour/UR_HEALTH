@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axiosClient from "../helpers/axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
     const { setCurrentUser, setUserToken } = useStateContext();
@@ -57,12 +58,12 @@ function Login() {
                         Your Health
                     </h1>
                     <p className="text-white mt-1">Is Our Treasure</p>
-                    <button
+                    {/* <button
                         type="submit"
                         className="block w-28 bg-white text-blue-800 mt-4 py-2 rounded-2xl font-bold mb-2"
                     >
                         Read More
-                    </button>
+                    </button> */}
                 </div>
                 <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
                 <div className="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
@@ -154,7 +155,12 @@ function Login() {
                         Login
                     </button>
                     <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-                        Forgot Password ?
+                        Don't have an account yet ?  <Link
+                        to={"/signup"}
+                        className=" leading-loose text-xs text-center text-black font-semibold hover:text-blue-700 "
+                    >
+                        Sign up
+                    </Link>
                     </span>
                 </form>
             </div>

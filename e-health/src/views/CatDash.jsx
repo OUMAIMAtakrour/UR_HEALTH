@@ -12,9 +12,10 @@ function CatDash(props) {
     // }
     return (
         <div>
-            {/* <Dash_navbar />
-            <Aside /> */}
-            <CategoryList />
+            <Dash_navbar />
+            <Aside />
+            <div className="my-20 mx-auto"> <CategoryList /></div>
+           
             <ProgressForm />
         </div>
     );

@@ -39,6 +39,8 @@ const DashUser = (props) => {
 
     return (
         <div>
+            <Aside/>
+            <Dash_navbar/>
             {loading && <div className="flex justify-center">Loading...</div>}
             {!loading && (
                 <div className="grid  text-gray-700">
@@ -59,7 +61,7 @@ const DashUser = (props) => {
                     </MedicineTable>
                 </div>
             )}
-            <Calendar />
+            {/* <Calendar /> */}
         </div>
     );
 };

@@ -3,6 +3,7 @@ import axiosClient from "../helpers/axios";
 import { data } from "autoprefixer";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
+import { Link } from "react-router-dom";
 
 function Signup() {
     const [user, setUser] = useState({
@@ -43,13 +44,13 @@ function Signup() {
                 localStorage.setItem("userToken", data.token);
                 switch (data.user.role) {
                     case "patient":
-                        navigate("/blogpage");
+                        navigate("/home");
                         break;
                     case "doctor":
                         navigate("/doc");
                         break;
                     case "admin":
-                        navigate("/doc");
+                        navigate("/dashboard");
                         break;
                     default:
                         navigate("/");
@@ -75,12 +76,7 @@ function Signup() {
                         Your Health
                     </h1>
                     <p className="text-white mt-1">Is Our Treasure</p>
-                    <button
-                        type="submit"
-                        className="block w-28 bg-white text-blue-800 mt-4 py-2 rounded-2xl font-bold mb-2"
-                    >
-                        Read More
-                    </button>
+                  
                 </div>
                 <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
                 <div className="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
@@ -167,7 +163,7 @@ function Signup() {
                             <option value="">Choose role</option>
                             <option value="patient">Patient</option>
                             <option value="doctor">Doctor</option>
-                            <option value="admin">Admin</option>
+                          
                         </select>
                     </div>
                     <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -205,7 +201,12 @@ function Signup() {
                         ></div>
                     )}
                     <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-                        Forgot Password ?
+                        Already have an account ?   <Link
+                        to={"/login"}
+                        className=" leading-loose text-xs text-center text-black font-semibold hover:text-blue-700 "
+                    >
+                        Login
+                    </Link>
                     </span>
                 </form>
             </div>

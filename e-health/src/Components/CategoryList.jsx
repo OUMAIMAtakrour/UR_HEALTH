@@ -15,7 +15,7 @@ function CategoryList(props) {
             try {
                 const response = await axiosClient.get("/categories");
                 console.log("Category API Response:", response);
-    
+
                 if (response.status === 200) {
                     setCategory(response.data.data);
                 } else {
@@ -32,10 +32,9 @@ function CategoryList(props) {
                 setLoading(false);
             }
         };
-    
+
         fetchCategory();
     }, []);
-    
 
     const showToast = (message) => {
         toast.success(message, {});
@@ -67,7 +66,7 @@ function CategoryList(props) {
                 <div className="text-center text-red-500">Error: {error}</div>
             )}
             {!loading && !error && (
-                <table className="table-auto w-full">
+                <table className="table-auto w-1/2 mx-auto">
                     <thead>
                         <tr>
                             <th className="px-4 py-2">Name</th>

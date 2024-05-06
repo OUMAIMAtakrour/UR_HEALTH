@@ -24,35 +24,25 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        // Validate the incoming request
         $validated = $request->validated();
 
-        // Define the admin role you're looking for (e.g., 'admin')
         $adminRole = 'admin';
 
-        // Retrieve the authenticated user
         $user = Auth::user();
 
-        // Ensure the authenticated user has the admin role
         if ($user && $user->role === $adminRole) {
-            // Find the admin user based on the role
             $adminUser = User::where('role', $adminRole)->first();
 
-            // Check if the admin user exists
             if ($adminUser) {
-                // Create the category associated with the admin user
                 $category = $adminUser->category()->create([
                     'category_name' => $validated['category_name'],
                 ]);
 
-                // Return the created category resource
                 return new CategoryResource($category);
             } else {
-                // If no admin user is found, return an error response
                 return response()->json(['error' => 'No admin user found'], 404);
             }
         } else {
-            // If the user does not have the admin role, return an error response
             return response()->json(['error' => 'Unauthorized'], 403);
         }
     }
@@ -71,9 +61,7 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+ 
     public function destroy(Request $request, Category $category)
     {
         $category->delete();
