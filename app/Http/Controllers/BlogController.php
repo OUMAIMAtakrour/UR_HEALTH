@@ -26,7 +26,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = Blog::findOrFail($id); // Find blog by ID or throw 404 error if not found
+        $blog = Blog::findOrFail($id); 
 
         return response()->json($blog);
     }
@@ -45,13 +45,10 @@ class BlogController extends Controller
 
     public function search(BlogSearchRequest $request)
     {
-        // Retrieve the validated search query from the request
         $searchQuery = $request->validated()['query'];
 
-        // Query the blogs based on the search query
         $filteredBlogs = Blog::where('title', 'like', '%' . $searchQuery . '%')->get();
 
-        // Transform the filtered blogs using the resource class
         $transformedBlogs = BlogSearchResource::collection($filteredBlogs);
 
         return response()->json([
@@ -74,42 +71,32 @@ class BlogController extends Controller
 
         $validatedData = $request->validated();
 
-        // Check if the user is authenticated
         if (Auth::check()) {
-            // Retrieve the authenticated user
             $authenticatedUser = Auth::user();
 
-            // Check if the authenticated user has the 'doctor' role
             if ($authenticatedUser->role === 'doctor') {
                 $doctor = $authenticatedUser->doctor;
 
-                // If the doctor record doesn't exist, create a new one
                 if (!$doctor) {
                     $doctor = Doctor::create([
                         'user_id' => $authenticatedUser->id,
-                        // Add any other required fields for the Doctor model
                     ]);
                 }
 
-                // Check if the category exists
                 $categoryId = $validatedData['category_id'];
                 $category = Category::find($categoryId);
 
                 if ($category) {
-                    // Set the doctor_id based on the associated doctor record
                     $validatedData['doctor_id'] = $doctor->id;
 
-                    // Handle image upload if provided
                     if ($request->hasFile('image')) {
                         $image = $request->file('image');
                         $relativePath = $image->store('images', 'public');
                         $validatedData['image'] = $relativePath;
                     }
 
-                    // Create the blog entry
                     $blog = Blog::create($validatedData);
 
-                    // Return a success response
                     return response()->json(['message' => 'Blog created successfully', 'blog' => $blog], 201);
                 } else {
                     return response()->json(['error' => 'Invalid category ID'], 400);
@@ -126,14 +113,10 @@ class BlogController extends Controller
 
     private function saveImage($image)
     {
-        // Check if image is valid base64 string
         if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
-            // Take out the base64 encoded text without mime type
             $image = substr($image, strpos($image, ',') + 1);
-            // Get file extension
-            $type = strtolower($type[1]); // jpg, png, gif
+            $type = strtolower($type[1]); 
 
-            // Check if file is an image
             if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
                 throw new \Exception('invalid image type');
             }

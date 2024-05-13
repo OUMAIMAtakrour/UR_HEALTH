@@ -45,7 +45,7 @@ const SingleArticle = ({ article }) => {
                     </div>
                     <img
                    
-                        src= {`http://localhost:8000/storage/${thumbnail}`}
+                         src={thumbnail}
                         alt={title}
                         className="w-1/2 h-2/3 mx-8 rounded-lg thumbnail"
                     />
@@ -88,7 +88,7 @@ const SingleBlog = () => {
                         author: blog.author,
                         authorRole: blog.authorRole,
                         date: blog.date,
-                        thumbnail: blog.thumbnail,
+                        thumbnail: 'http://localhost:8000/storage/blog.thumbnail',
                         content: blog.content,
                     }}
                 />

@@ -69,7 +69,7 @@ const BlogPage = () => {
             </header>
 
             <div className="flex flex-col flex-grow justify-center">
-                {/* <input
+                <input
                     type="text"
                     placeholder="Search blogs..."
                     value={searchQuery}
@@ -83,7 +83,7 @@ const BlogPage = () => {
                     className="mb-4 text-blue-500 hover:text-blue-700"
                 >
                     Add New Blog
-                </Link> */}
+                </Link>
 
                 <div className="flex  gap-4 px-8 py-8">
                     {filteredBlogs.map((blog) => (

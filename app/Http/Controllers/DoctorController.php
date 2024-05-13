@@ -25,22 +25,17 @@ class DoctorController extends Controller
 
     public function myBlog()
     {
-        // Retrieve the authenticated user (doctor)
         $authenticatedUser = Auth::user();
     
         if ($authenticatedUser) {
-            // Check if the authenticated user has the 'doctor' role
             if ($authenticatedUser->role === 'doctor') {
-                // Retrieve the doctor instance associated with the authenticated user
                 $doctor = $authenticatedUser->doctor;
     
                 if ($doctor) {
-                    // Eager load the blogs relationship with the doctor, and include the category relationship for each blog
                     $blogs = $doctor->load(['blogs' => function ($query) {
                         $query->with('category');
                     }])->blogs;
     
-                    // Return a JSON response with the blogs associated with the authenticated doctor
                     return response()->json(['blogs' => $blogs], 200);
                 } else {
                     return response()->json(['error' => 'Doctor not found'], 404);
@@ -70,11 +65,10 @@ class DoctorController extends Controller
 
     public function getShifts($id)
     {
-        $doctor = Doctor::findOrFail($id);
+        // $doctor = Doctor::findOrFail($id);
         $shifts = Booking::where('doctor_id', $id)
             ->distinct('shifts')
-            ->pluck('shifts')
-            ->toArray();
+            ->pluck('shifts');
 
         return response()->json(['shifts' => $shifts]);
     }
