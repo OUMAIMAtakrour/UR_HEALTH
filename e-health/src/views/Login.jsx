@@ -26,7 +26,7 @@ function Login() {
                 setUserToken(data.token);
                 switch (data.user.role) {
                     case "patient":
-                        navigate("/blogpage");
+                        navigate("/home");
                         break;
                     case "doctor":
                         navigate("/doc");
@@ -35,10 +35,9 @@ function Login() {
                         navigate("/doc");
                         break;
                     default:
-                        navigate("/"); 
+                        navigate("/");
                         break;
                 }
-               
             })
             .catch((error) => {
                 if (error.response) {
@@ -155,12 +154,13 @@ function Login() {
                         Login
                     </button>
                     <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-                        Don't have an account yet ?  <Link
-                        to={"/signup"}
-                        className=" leading-loose text-xs text-center text-black font-semibold hover:text-blue-700 "
-                    >
-                        Sign up
-                    </Link>
+                        Don't have an account yet ?{" "}
+                        <Link
+                            to={"/signup"}
+                            className=" leading-loose text-xs text-center text-black font-semibold hover:text-blue-700 "
+                        >
+                            Sign up
+                        </Link>
                     </span>
                 </form>
             </div>

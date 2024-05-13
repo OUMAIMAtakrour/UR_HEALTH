@@ -68,8 +68,20 @@ class DoctorController extends Controller
         // $doctor = Doctor::findOrFail($id);
         $shifts = Booking::where('doctor_id', $id)
             ->distinct('shifts')
-            ->pluck('shifts');
+            ->pluck('shifts')
+            ->toArray();
 
         return response()->json(['shifts' => $shifts]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+

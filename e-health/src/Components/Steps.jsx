@@ -24,7 +24,7 @@ function Steps() {
       },
       {
         icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/8fcdd40a4fbad08cf4ddc80fb0ebcfee0075fe99ca5a5a871322be1c74d71540?apiKey=37ec813b063f430c8cec37fffc22655e&",
-        title: "Drug Notificatio",
+        title: "Drug Notifications",
         description:
           "We are committed to providing you with the best medical and healthcare services to help you live healthier and happier",
       },
